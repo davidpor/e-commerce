@@ -71,7 +71,8 @@ app.get('/', (req, res) => {
 // app.use('/api/products', require('./modules/catalog/catalog.router'));
 // app.use('/api/orders',   require('./modules/orders/orders.router'));
 app.use('/api/auth', require('./modules/auth/auth.router'));
-app.use('/api/products', require('./modules/catalog/catalog.router')); 
+app.use('/api/products', require('./modules/catalog/catalog.router'));
+app.use('/api/pricing',  require('./modules/pricing/pricing.router'));
 // ======================
 // MANEJO DE ERRORES GLOBAL
 // ======================
