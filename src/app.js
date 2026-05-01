@@ -70,7 +70,7 @@ app.get('/', (req, res) => {
 // app.use('/api/auth',     require('./modules/auth/auth.router'));
 // app.use('/api/products', require('./modules/catalog/catalog.router'));
 // app.use('/api/orders',   require('./modules/orders/orders.router'));
-
+app.use('/api/auth', require('./modules/auth/auth.router'));
 // ======================
 // MANEJO DE ERRORES GLOBAL
 // ======================
@@ -90,7 +90,7 @@ app.use((err, req, res, next) => {
   
   // En desarrollo enviamos el stack trace para debuggear más fácil
   // En producción solo el mensaje (no queremos exponer detalles internos)
-  res.status(err.status || 500).json({
+  res.status(err.statusCode || 500).json({
     error: err.message || 'Error interno del servidor',
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
   });
