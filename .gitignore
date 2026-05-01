@@ -1,0 +1,16 @@
+# Dependencias (se instalan con npm install, no se suben)
+node_modules/
+
+# Variables de entorno (tienen contraseñas, NUNCA al repo)
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/settings.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
