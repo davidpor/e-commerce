@@ -4,6 +4,7 @@ const User = require('../users/user.model');
 const Company = require('../users/company.model');
 const redis = require('../../config/redis');
 const { errors } = require('../../utils/errors');
+const emailService = require('../notifications/email.service');
 
 // ─── Función privada: genera los dos tokens ───────────────────────────────────
 const generarTokens = (payload) => {
@@ -67,6 +68,12 @@ const registrar = async ({ empresa, usuario }) => {
     rol:           'cliente',
     company_id:    nuevaEmpresa.id,
   });
+  
+await emailService.enviarBienvenida({
+  email:       usuario.email,
+  nombre:      usuario.nombre,
+  razonSocial: nuevaEmpresa.razon_social,
+});
 
   return {
     mensaje: 'Registro exitoso. Tu cuenta será activada en las próximas 24 horas.',

@@ -5,6 +5,7 @@ const Company  = require('../users/company.model');
 const { calcularPrecio } = require('../pricing/pricing.service');
 const { errors } = require('../../utils/errors');
 const { getPagination, getPaginationMeta } = require('../../utils/pagination');
+const emailService = require('../notifications/email.service');
 
 // ── Función privada: recalcula los totales de una cotización ───────────────
 const recalcularTotales = async (quoteId) => {
@@ -141,6 +142,14 @@ const enviarCotizacion = async (quoteId, userId) => {
   }
 
   await cotizacion.update({ estado: 'pendiente' });
+  const cotizacionCompleta = await getCotizacionPorId(quoteId);
+  
+await emailService.enviarCotizacionRecibida({
+  email:      cotizacionCompleta.creador.email,
+  nombre:     cotizacionCompleta.creador.nombre,
+  cotizacion: cotizacionCompleta,
+});
+
   return getCotizacionPorId(quoteId);
 };
 

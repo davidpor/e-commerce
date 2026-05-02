@@ -5,6 +5,7 @@ const Product = require('../catalog/product.model');
 const Company = require('../users/company.model');
 const { errors } = require('../../utils/errors');
 const { getPagination, getPaginationMeta } = require('../../utils/pagination');
+const emailService = require('../notifications/email.service');
 
 // ── Función privada: registra cada cambio de estado ───────────────────────
 const registrarCambioEstado = async (orderId, estadoAnterior, estadoNuevo, userId, nota) => {
@@ -105,6 +106,13 @@ const crearDesdeCotizacion = async (quoteId, userId, data) => {
     pedido.id, null, 'confirmado', userId,
     `Pedido creado desde cotización ${cotizacion.numero}`
   );
+
+const pedidoCompleto = await getPedidoCompleto(pedido.id);
+await emailService.enviarPedidoConfirmado({
+  email:  pedidoCompleto.empresa.email_contacto,
+  nombre: pedidoCompleto.creador.nombre,
+  pedido: pedidoCompleto,
+});
 
   return getPedidoCompleto(pedido.id);
 };
