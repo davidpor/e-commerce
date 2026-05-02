@@ -5,6 +5,35 @@ const { autenticar, autorizar } = require('../../middlewares/auth.middleware');
 
 const router = Router();
 
+/**
+ * @swagger
+ * /api/pricing:
+ *   get:
+ *     summary: Listar listas de precios
+ *     tags: [Precios]
+ *     responses:
+ *       200: { description: Lista de listas de precios }
+ *   post:
+ *     summary: Crear lista de precios
+ *     tags: [Precios]
+ *     responses:
+ *       201: { description: Lista creada }
+ *
+ * /api/pricing/catalog:
+ *   get:
+ *     summary: Catálogo con precios personalizados para el cliente logueado
+ *     tags: [Precios]
+ *     responses:
+ *       200: { description: Catálogo con precios del cliente }
+ *
+ * /api/pricing/calculate:
+ *   post:
+ *     summary: Calcular precio para un producto y empresa
+ *     tags: [Precios]
+ *     responses:
+ *       200: { description: Precio calculado }
+ */
+
 // Catálogo con precios personalizados para el cliente logueado
 // GET /api/pricing/catalog → devuelve productos con MI precio
 router.get('/catalog', autenticar, ctrl.getCatalogoConPrecios);
