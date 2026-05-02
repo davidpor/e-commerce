@@ -1,19 +1,18 @@
 // src/app.js
-
-// Cargamos las variables de entorno PRIMERO que todo
-// Si esto no está al principio, el resto del código no
-// encuentra las variables cuando las necesita
 require('dotenv').config();
 
-const express = require('express');
-const cors    = require('cors');
-const helmet  = require('helmet');
-const morgan  = require('morgan');
+const express    = require('express');
+const cors       = require('cors');
+const helmet     = require('helmet');
+const morgan     = require('morgan');
+const swaggerUi  = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+const { limiterGeneral } = require('./middlewares/rateLimit.middleware');
 
-// Importamos nuestras configuraciones
 const sequelize = require('./config/database');
-require('./config/redis'); // solo para iniciar la conexión
+require('./config/redis');
 
+// Cargamos todos los modelos antes del sync
 require('./modules/users/company.model');
 require('./modules/users/user.model');
 require('./modules/catalog/category.model');
@@ -22,121 +21,100 @@ require('./modules/pricing/pricing.model');
 require('./modules/quotes/quote.model');
 require('./modules/orders/order.model');
 
-// Creamos la aplicación Express
 const app = express();
 
-// ======================
-// MIDDLEWARES GLOBALES
-// (se ejecutan en cada request antes de llegar a las rutas)
-// ======================
-
-// Helmet agrega headers HTTP de seguridad automáticamente
-// Por ejemplo: X-Content-Type-Options, X-Frame-Options, etc.
-app.use(helmet());
-
-// CORS: permite que el frontend (en otro puerto/dominio) hable con la API
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-  credentials: true, // permite enviar cookies en los requests
+// ── Seguridad ──────────────────────────────────────────────────────────────
+app.use(helmet({
+  // Permitimos que swagger-ui cargue sus recursos
+  contentSecurityPolicy: false,
 }));
 
-// Morgan: logger de requests. 'dev' es el formato que muestra
-// método, ruta, status y tiempo de respuesta con colores
+app.use(cors({
+  origin:      process.env.FRONTEND_URL,
+  credentials: true,
+}));
+
+// Rate limiting general — aplica a todas las rutas
+app.use('/api', limiterGeneral);
+
+// ── Logging y parseo ───────────────────────────────────────────────────────
 app.use(morgan('dev'));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// express.json(): permite que Express lea el body de los requests
-// en formato JSON (lo que enviará el frontend en los POST/PUT)
-app.use(express.json());
+// ── Documentación Swagger ──────────────────────────────────────────────────
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customSiteTitle: 'Ferretería B2B — API Docs',
+  customCss: '.swagger-ui .topbar { display: none }',
+}));
 
-// express.urlencoded(): permite leer datos de formularios HTML
-app.use(express.urlencoded({ extended: true }));
+// Endpoint que devuelve el spec en JSON (útil para herramientas externas)
+app.get('/api/docs.json', (req, res) => res.json(swaggerSpec));
 
-// ======================
-// RUTAS
-// ======================
-
-// Ruta de salud: sirve para verificar que el servidor está vivo.
-// Es útil para monitoreo y para Docker health checks.
+// ── Rutas base ─────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => {
   res.json({
-    status: 'ok',
-    timestamp: new Date().toISOString(),
+    status:      'ok',
+    timestamp:   new Date().toISOString(),
     environment: process.env.NODE_ENV,
+    version:     '1.0.0',
   });
 });
 
-// Ruta raíz con info básica de la API
 app.get('/', (req, res) => {
   res.json({
-    nombre: 'Ferretería B2B API',
-    version: '1.0.0',
-    documentacion: '/api/docs', // lo agregaremos más adelante con Swagger
+    nombre:        'Ferretería B2B API',
+    version:       '1.0.0',
+    documentacion: '/api/docs',
   });
 });
 
-// Placeholder para las rutas del sistema (las vamos agregando de a módulos)
-// app.use('/api/auth',     require('./modules/auth/auth.router'));
-// app.use('/api/products', require('./modules/catalog/catalog.router'));
-// app.use('/api/orders',   require('./modules/orders/orders.router'));
-app.use('/api/auth', require('./modules/auth/auth.router'));
+// ── Módulos de la API ──────────────────────────────────────────────────────
+app.use('/api/auth',     require('./modules/auth/auth.router'));
 app.use('/api/products', require('./modules/catalog/catalog.router'));
 app.use('/api/pricing',  require('./modules/pricing/pricing.router'));
 app.use('/api/quotes',   require('./modules/quotes/quotes.router'));
 app.use('/api/orders',   require('./modules/orders/orders.router'));
 app.use('/api/payments', require('./modules/payments/payments.router'));
-// ======================
-// MANEJO DE ERRORES GLOBAL
-// ======================
 
-// Ruta no encontrada (404) - debe ir DESPUÉS de todas las rutas
+// ── 404 ────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({
     error: 'Ruta no encontrada',
-    ruta: req.originalUrl,
+    ruta:  req.originalUrl,
+    docs:  '/api/docs',
   });
 });
 
-// Manejador de errores global - Express lo reconoce por los 4 parámetros
-// Cualquier error que se pase con next(error) llega acá
+// ── Manejador de errores global ────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('\x1b[31m[Error]\x1b[0m', err.message);
-  
-  // En desarrollo enviamos el stack trace para debuggear más fácil
-  // En producción solo el mensaje (no queremos exponer detalles internos)
   res.status(err.statusCode || 500).json({
     error: err.message || 'Error interno del servidor',
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
   });
 });
 
-// ======================
-// INICIO DEL SERVIDOR
-// ======================
-
+// ── Inicio del servidor ────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
 
-// Función async para poder usar await al conectar la BD
 const startServer = async () => {
   try {
-    // Verificamos que podemos conectar a MariaDB
     await sequelize.authenticate();
     console.log('\x1b[32m[DB]\x1b[0m Conexión a MariaDB exitosa');
 
-    // Sincronizamos modelos con la BD
-    // { alter: true } actualiza tablas existentes sin borrar datos
-    // OJO: en producción se usan migraciones, no sync
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log('\x1b[32m[DB]\x1b[0m Modelos sincronizados');
 
-    // Arrancamos el servidor HTTP
     app.listen(PORT, () => {
       console.log(`\x1b[32m[Server]\x1b[0m Corriendo en http://localhost:${PORT}`);
       console.log(`\x1b[32m[Server]\x1b[0m Entorno: ${process.env.NODE_ENV}`);
+      console.log(`\x1b[32m[Docs]\x1b[0m   http://localhost:${PORT}/api/docs`);
     });
 
   } catch (error) {
-    console.error('\x1b[31m[Error]\x1b[0m No se pudo iniciar el servidor:', error);
-    process.exit(1); // Salimos con código de error para que el sistema sepa que falló
+    console.error('\x1b[31m[Error]\x1b[0m No se pudo iniciar:', error.message);
+    process.exit(1);
   }
 };
 
