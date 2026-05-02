@@ -83,6 +83,7 @@ app.use('/api/products', require('./modules/catalog/catalog.router'));
 app.use('/api/pricing',  require('./modules/pricing/pricing.router'));
 app.use('/api/quotes',   require('./modules/quotes/quotes.router'));
 app.use('/api/orders',   require('./modules/orders/orders.router'));
+app.use('/api/payments', require('./modules/payments/payments.router'));
 // ======================
 // MANEJO DE ERRORES GLOBAL
 // ======================
