@@ -14,6 +14,14 @@ const morgan  = require('morgan');
 const sequelize = require('./config/database');
 require('./config/redis'); // solo para iniciar la conexión
 
+require('./modules/users/company.model');
+require('./modules/users/user.model');
+require('./modules/catalog/category.model');
+require('./modules/catalog/product.model');
+require('./modules/pricing/pricing.model');
+require('./modules/quotes/quote.model');
+require('./modules/orders/order.model');
+
 // Creamos la aplicación Express
 const app = express();
 
@@ -74,6 +82,7 @@ app.use('/api/auth', require('./modules/auth/auth.router'));
 app.use('/api/products', require('./modules/catalog/catalog.router'));
 app.use('/api/pricing',  require('./modules/pricing/pricing.router'));
 app.use('/api/quotes',   require('./modules/quotes/quotes.router'));
+app.use('/api/orders',   require('./modules/orders/orders.router'));
 // ======================
 // MANEJO DE ERRORES GLOBAL
 // ======================
@@ -115,7 +124,7 @@ const startServer = async () => {
     // Sincronizamos modelos con la BD
     // { alter: true } actualiza tablas existentes sin borrar datos
     // OJO: en producción se usan migraciones, no sync
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ force: true });
     console.log('\x1b[32m[DB]\x1b[0m Modelos sincronizados');
 
     // Arrancamos el servidor HTTP
