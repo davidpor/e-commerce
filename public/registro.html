@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístrate - ObraMaestra</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="registro.css">
+
+</head>
+
+<body>
+
+    <div class="auth-contenedor">
+        
+        <div class="auth-logo">
+            <i class="fa-solid fa-helmet-safety"></i> OBRAMAESTRA
+        </div>
+
+        <div class="auth-tarjeta">
+            <h2>Regístrate para empezar a comprar</h2>
+            
+            <form action="procesar_registro.php" method="POST" enctype="multipart/form-data" class="auth-form">
+                
+                <div class="input-grupo">
+                    <label for="empresa">Nombre de la Empresa</label>
+                    <input type="text" id="empresa" name="empresa" placeholder="Ej: Construcciones S.A." required>
+                </div>
+
+                <div class="input-grupo">
+                    <label for="cuit">Número de CUIT</label>
+                    <input type="number" id="cuit" name="cuit" placeholder="Sin guiones ni espacios" required>
+                </div>
+
+                <div class="input-grupo">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="nombre@tuempresa.com" required>
+                </div>
+
+                <div class="input-grupo">
+                    <label for="password">Crea una contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" required>
+                </div>
+
+                <div class="input-grupo archivo-grupo">
+                    <label for="afip">Constancia de AFIP</label>
+                    <input type="file" id="afip" name="afip" accept=".pdf, .jpg, .png" required>
+                </div>
+
+                <button type="submit" class="btn-auth">Registrarse</button>
+            </form>
+
+            <hr class="divisor">
+
+            <div class="auth-pie">
+                <p>¿Ya tienes una cuenta? <a href="login.html">Iniciar sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

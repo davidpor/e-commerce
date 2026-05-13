@@ -1,0 +1,163 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.auth-contenedor {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo superior */
+.auth-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.auth-logo i {
+    color: #f59e0b; /* Tu toque naranja */
+}
+
+/* Tarjeta del formulario */
+.auth-tarjeta {
+    background-color:  #18181b; /* Negro puro */
+    width: 100%;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.auth-tarjeta h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+/* Formulario e Inputs */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-grupo label {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.input-grupo input {
+    background-color: #121212; /* Fondo del input oscuro */
+    border: 1px solid #727272; /* Borde sutil */
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+/* Efecto al hacer clic en el input */
+.input-grupo input:focus {
+    border-color: #ffffff;
+}
+
+.input-grupo input::placeholder {
+    color: #a7a7a7;
+}
+
+/* Estilo para subir archivos */
+.archivo-grupo input[type="file"] {
+    padding: 10px;
+    color: #a7a7a7;
+    font-size: 0.9rem;
+}
+
+.archivo-grupo input[type="file"]::file-selector-button {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: transform 0.1s ease;
+}
+
+.archivo-grupo input[type="file"]::file-selector-button:hover {
+    transform: scale(1.04);
+}
+
+/* Botón principal (Estilo píldora) */
+.btn-auth {
+    background-color: #f59e0b; 
+    color: #000000; /* Letra negra para máximo contraste */
+    border: none;
+    padding: 16px;
+    border-radius: 50px; /* Bordes totalmente redondeados */
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.1s ease, background-color 0.2s;
+}
+
+.btn-auth:hover {
+    background-color: #ffb800;
+    transform: scale(1.04); /* Pequeño salto al pasar el mouse */
+    box-shadow: 0 0 8px rgba(255, 153, 0, 0.8); /* Sombra suave para resaltar */
+}
+
+/* Línea divisoria y pie de tarjeta */
+.divisor {
+    border: 0;
+    height: 1px;
+    background-color: #292929;
+    margin: 30px 0;
+}
+
+.auth-pie {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #a7a7a7;
+}
+
+.auth-pie a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.auth-pie a:hover {
+    color: #f97316;
+    text-decoration: underline;
+}

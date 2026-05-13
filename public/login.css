@@ -1,0 +1,144 @@
+/* =========================================
+   ESTILOS DE LA PÁGINA DE LOGIN
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000; /* Fondo gris oscuro */
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-contenedor {
+    width: 100%;
+    max-width: 400px; /* Un poco más angosto que el registro porque tiene menos campos */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.auth-logo i {
+    color: #f59e0b; /* Naranja ObraMaestra */
+}
+
+.auth-tarjeta {
+    background-color: #18181b;
+    width: 100%;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.auth-tarjeta h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-grupo label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #e5e5e5;
+}
+
+.input-grupo input {
+    background-color: #121212;
+    border: 1px solid #555;
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.input-grupo input:focus {
+    border-color: #ffffff;
+    background-color: #1a1a1a;
+}
+
+.input-grupo input::placeholder {
+    color: #888;
+}
+
+.btn-auth {
+    background-color: #f59e0b;
+    color: #000000;
+    border: none;
+    padding: 16px;
+    border-radius: 50px; /* Botón píldora */
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.1s ease, background-color 0.2s;
+}
+
+.btn-auth:hover {
+    background-color: #ffb800;
+    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(255, 153, 0, 0.8); /* Sombra suave para resaltar */
+}
+
+.divisor {
+    border: 0;
+    height: 1px;
+    background-color: #292929;
+    margin: 30px 0;
+}
+
+.auth-pie {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #a7a7a7;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-pie a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.auth-pie a:hover {
+    color: #f97316;
+}

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ObraMaestra | Distribuidor Mayorista</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="carrito.css">
+    
+</head>
+
+
+<body>
+
+    <header>
+        <div class="tipologo">
+            <div class="caja-naranja">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-hat-icon lucide-hard-hat"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg>
+            </div>
+            <span>OBRAMAESTRA</span>
+        </div>
+
+        <nav>
+            <ul class="navLinks">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="catalogo.html">CATÁLOGO</a></li>    <!-- catalogo.php" -->
+                <li><a href="nosotros.html">NOSOTROS</a></li>  <!-- index.php#sectores" -->
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-point">
+
+            <a href="carrito.html">
+            <div class="caja-shopping">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+        </div>
+            </a>
+
+            <button class="btn-login" onclick="window.location.href='registro.html'">
+                <div class="caja-icon-login">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                </div> <span class="texto-login">Ingresar</span>
+            </button>
+
+
+            <button class="btn-hamburguesa" id="btn-hamburguesa">
+                <svg class="icono-barras" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/> </svg>
+                <svg class="icono-x" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- ---------- SEPARACION DEL HEADER ---------- -->
+
+    <main>
+        <section class="hero">
+        <div class="hero-contenido">
+            
+            <!-- Etiqueta superior -->
+            <div class="hero-etiqueta">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-factory-icon lucide-factory"><path d="M12 16h.01"/><path d="M16 16h.01"/><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M8 16h.01"/></svg> 
+                <span class="hero-texto-etiqueta">DISTRIBUIDOR MAYORISTA</span> 
+            </div>
+
+            <h1>CONSTRUYE <br> <span class="texto-naranja">EN GRANDE</span></h1>
+
+            <p>Abastecemos tu proyecto con herramientas y materiales de primera calidad. Precios mayoristas, envíos directos a obra y stock garantizado.</p>
+
+            <div class="hero-botones">
+                <a href="catalogo.html" class="btn-naranja">Catálogo Mayorista <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> </a>
+
+                <a href="registro.html" class="btn-transparente">Crear Cuenta</a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE INFORMACIÓN -->
+    <section class="beneficios">
+        
+        <!-- Tarjeta 1 -->
+        <article class="tarjeta-beneficio">
+            <div class="icono-beneficio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-hat-icon lucide-hard-hat"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg>
+            </div>
+            <h3>Equipamiento Profesional</h3>
+            <p>Marcas líderes en el sector para asegurar la máxima durabilidad.</p>
+        </article>
+
+        <!-- Tarjeta 2 -->
+        <article class="tarjeta-beneficio">
+            <div class="icono-beneficio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-factory-icon lucide-factory"><path d="M12 16h.01"/><path d="M16 16h.01"/><path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M8 16h.01"/></svg> 
+            </div>
+            <h3>Stock por Mayor</h3>
+            <p>Volúmenes industriales para abastecer obras de cualquier escala.</p>
+        </article>
+
+        <!-- Tarjeta 3 -->
+        <article class="tarjeta-beneficio">
+            <div class="icono-beneficio">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check-icon lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h3>Compra Segura y Rápida</h3>
+            <p>Facturación B2B, atención personalizada y logística eficiente.</p>
+        </article>
+
+    </section>
+
+
+
+        <!-- SECCIÓN HERRAMIENTAS DESTACADAS -->
+
+<section class="destacados">
+    
+    <!-- Encabezado de la sección -->
+    <div class="destacados-cabecera">
+        <div class="cabecera-textos">
+            <h2>HERRAMIENTAS DESTACADAS</h2>
+            <p>Equipa a tu equipo con nuestra selección premium de herramientas industriales.</p>
+        </div>
+        <a href="catalogo.html" class="enlace-catalogo">Ver Catálogo Completo <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+
+<!-- Carrusel Horizontal -->
+    
+    <div class="carrusel-productos">
+        
+        <!-- TARJETA DE PRODUCTO 1 -->
+        <article class="tarjeta-producto">
+            
+            <!-- Parte Superior: Imagen y Botones superpuestos -->
+            <div class="producto-imagen-contenedor">
+                <!-- Tu foto del casco -->
+                <img src="img/casco.jpeg" alt="Casco de Seguridad">
+                
+                <!-- Etiqueta superior izquierda -->
+                <span class="etiqueta-categoria">SEGURIDAD INDUSTRIAL</span>
+                
+                <!-- Botón de Favorito superior derecho -->
+                <button class="btn-favorito"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                
+                <!-- Botón oculto que aparece al hacer hover -->
+                <button class="btn-agregar-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="texto-cart">Agregar al Pedido</span> </button>
+            </div>
+
+            <!-- Parte Inferior: Información -->
+            
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h3>Casco de Seguridad Pro...</h3>
+                    <span class="producto-precio">$8900</span>
+                </div>
+                
+                <p class="producto-descripcion">Casco dieléctrico de alta resistencia a impactos con arnés de 4 puntos y banda de los ultimos modelos que se sacaron al mercado, parte dentro forrada con poleas</p>
+                
+                
+            </div>
+        </article>
+
+        <!--   ##########3      -->
+
+        <!-- TARJETA DE PRODUCTO 1 -->
+        <article class="tarjeta-producto">
+            
+            <!-- Parte Superior: Imagen y Botones superpuestos -->
+            <div class="producto-imagen-contenedor">
+                <!-- Tu foto del casco -->
+                <img src="img/casco.jpeg" alt="Casco de Seguridad">
+                
+                <!-- Etiqueta superior izquierda -->
+                <span class="etiqueta-categoria">SEGURIDAD INDUSTRIAL</span>
+                
+                <!-- Botón de Favorito superior derecho -->
+                <button class="btn-favorito"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                
+                <!-- Botón oculto que aparece al hacer hover -->
+                <button class="btn-agregar-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="texto-cart">Agregar al Pedido</span> </button>
+            </div>
+
+            <!-- Parte Inferior: Información -->
+            
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h3>Casco de Seguridad Pro...</h3>
+                    <span class="producto-precio">$8900</span>
+                </div>
+                
+                <p class="producto-descripcion">Casco dieléctrico de alta resistencia a impactos con arnés de 4 puntos y banda de...</p>
+                
+                
+            </div>
+        </article>
+
+
+        <!-- TARJETA DE PRODUCTO 1 -->
+        <article class="tarjeta-producto">
+            
+            <!-- Parte Superior: Imagen y Botones superpuestos -->
+            <div class="producto-imagen-contenedor">
+                <!-- Tu foto del casco -->
+                <img src="img/casco.jpeg" alt="Casco de Seguridad">
+                
+                <!-- Etiqueta superior izquierda -->
+                <span class="etiqueta-categoria">SEGURIDAD INDUSTRIAL</span>
+                
+                <!-- Botón de Favorito superior derecho -->
+                <button class="btn-favorito"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                
+                <!-- Botón oculto que aparece al hacer hover -->
+                <button class="btn-agregar-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="texto-cart">Agregar al Pedido</span> </button>
+            </div>
+
+            <!-- Parte Inferior: Información -->
+            
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h3>Casco de Seguridad Pro...</h3>
+                    <span class="producto-precio">$8900</span>
+                </div>
+                
+                <p class="producto-descripcion">Casco dieléctrico de alta resistencia a impactos con arnés de 4 puntos y banda de...</p>
+                
+                
+            </div>
+        </article>
+
+        <!-- TARJETA DE PRODUCTO 1 -->
+        <article class="tarjeta-producto">
+            
+            <!-- Parte Superior: Imagen y Botones superpuestos -->
+            <div class="producto-imagen-contenedor">
+                <!-- Tu foto del casco -->
+                <img src="img/casco.jpeg" alt="Casco de Seguridad">
+                
+                <!-- Etiqueta superior izquierda -->
+                <span class="etiqueta-categoria">SEGURIDAD INDUSTRIAL</span>
+                
+                <!-- Botón de Favorito superior derecho -->
+                <button class="btn-favorito"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                
+                <!-- Botón oculto que aparece al hacer hover -->
+                <button class="btn-agregar-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="texto-cart">Agregar al Pedido</span> </button>
+            </div>
+
+            <!-- Parte Inferior: Información -->
+            
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h3>Casco de Seguridad Pro...</h3>
+                    <span class="producto-precio">$8900</span>
+                </div>
+                
+                <p class="producto-descripcion">Casco dieléctrico de alta resistencia a impactos con arnés de 4 puntos y banda de...</p>
+                
+                
+            </div>
+        </article>
+
+
+        <!-- TARJETA DE PRODUCTO 1 -->
+        <article class="tarjeta-producto">
+            
+            <!-- Parte Superior: Imagen y Botones superpuestos -->
+            <div class="producto-imagen-contenedor">
+                <!-- Tu foto del casco -->
+                <img src="img/casco.jpeg" alt="Casco de Seguridad">
+                
+                <!-- Etiqueta superior izquierda -->
+                <span class="etiqueta-categoria">SEGURIDAD INDUSTRIAL</span>
+                
+                <!-- Botón de Favorito superior derecho -->
+                <button class="btn-favorito"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg></button>
+                
+                <!-- Botón oculto que aparece al hacer hover -->
+                <button class="btn-agregar-hover"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg> <span class="texto-cart">Agregar al Pedido</span> </button>
+            </div>
+
+            <!-- Parte Inferior: Información -->
+            
+            <div class="producto-info">
+                <div class="producto-encabezado">
+                    <h3>Casco de Seguridad Pro...</h3>
+                    <span class="producto-precio">$8900</span>
+                </div>
+                
+                <p class="producto-descripcion">Casco dieléctrico de alta resistencia a impactos con arnés de 4 puntos y banda de </p>
+                
+                
+            </div>
+        </article>
+
+
+    </div>
+</section>
+
+<!----------- SECCIÓN COMPRAR POR SECTOR ---------------->
+
+<section class="sectores">
+    
+    <div class="sectores-cabecera">
+        <h2>COMPRAR POR SECTOR</h2>
+        <div class="linea-naranja"></div>
+    </div>
+
+    <div class="bento-sectores">
+        
+        <a href="#" class="tarjeta-sector bg-electricas">
+            <div class="sector-contenido">
+                <h3>HERRAMIENTAS ELÉCTRICAS</h3>
+                <span class="enlace-abastecer">Abastecer ahora <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
+        </a>
+
+        <a href="#" class="tarjeta-sector bg-seguridad">
+            <div class="sector-contenido">
+                <h3>SEGURIDAD INDUSTRIAL</h3>
+                <span class="enlace-abastecer">Abastecer ahora <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
+        </a>
+
+        <a href="#" class="tarjeta-sector bg-medicion">
+            <div class="sector-contenido">
+                <h3>MEDICIÓN Y CONTROL</h3>
+                <span class="enlace-abastecer">Abastecer ahora <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
+        </a>
+
+        <a href="#" class="tarjeta-sector bg-equipamiento-pesado">
+            <div class="sector-contenido">
+                <h3>EQUIPAMIENTO PESADO</h3>
+                <span class="enlace-abastecer">Abastecer ahora <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right-icon lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            </div>
+        </a>
+
+    </div>
+</section>
+
+</main>
+
+<!-- ---------- SEPARACION DEL FOOTER ---------- -->
+
+    <footer class="footer-principal">
+        
+        <div class="footer-top">
+            
+            <div class="footer-columna marca">
+                <div class="logo-footer">
+                    <i class="fa-solid fa-helmet-safety"></i>
+                    <span>OBRAMAESTRA</span>
+                </div>
+                <p>El proveedor mayorista líder en materiales y herramientas para el profesional de la construcción. Construye sin límites.</p>
+            </div>
+
+
+            <div class="footer-columna enlaces">
+                <h4>Soporte a Empresas</h4>
+                <ul>
+                    <li><a href="#">Abrir Cuenta Corriente</a></li>
+                    <li><a href="#">Logística y Envíos a Obra</a></li>
+                    <li><a href="#">Contacto Comercial</a></li>
+                    <li><a href="#">Garantías</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-columna boletin">
+                <h4>Lista de Precios y Novedades</h4>
+                <p>Recibe las últimas actualizaciones de stock y lista de precios para distribuidores.</p>
+                <form action="#" class="formulario-boletin">
+                    <input type="email" placeholder="email@empresa.com" required>
+                    <button type="submit">Suscribir</button>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 ObraMaestra Mayorista S.A. Todos los derechos reservados.</p>
+            <div class="enlaces-legales">
+                <a href="#">Términos de Facturación</a>
+                <a href="#">Privacidad</a>
+            </div>
+        </div>
+
+    </footer>
+
+    <div class="chat-asistente-contenedor">
+        
+        <span class="text-asistente-pop">Asistente virtual</span>
+
+        <button class="btn-asistente-ia" aria-label="Abrir asistente de IA">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+            </svg>
+        </button>
+        
+    </div>
+
+    <script src="menu.js"></script>
+
+</body>
+
+</html>

@@ -12,6 +12,8 @@ const { limiterGeneral } = require('./middlewares/rateLimit.middleware');
 const sequelize = require('./config/database');
 require('./config/redis');
 
+const path = require('path');
+
 // Cargamos todos los modelos antes del sync
 require('./modules/users/company.model');
 require('./modules/users/user.model');
@@ -42,6 +44,9 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Servir archivos estáticos (HTML, CSS, JS, Imágenes) desde la carpeta public
+app.use(express.static(path.join(__dirname, '../public')));
+
 // ── Documentación Swagger ──────────────────────────────────────────────────
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
   customSiteTitle: 'Ferretería B2B — API Docs',
@@ -61,6 +66,8 @@ app.get('/health', (req, res) => {
   });
 });
 
+/*
+
 app.get('/', (req, res) => {
   res.json({
     nombre:        'Ferretería B2B API',
@@ -68,6 +75,8 @@ app.get('/', (req, res) => {
     documentacion: '/api/docs',
   });
 });
+
+*/
 
 // ── Módulos de la API ──────────────────────────────────────────────────────
 app.use('/api/auth',     require('./modules/auth/auth.router'));

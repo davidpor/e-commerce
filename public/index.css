@@ -1,0 +1,1195 @@
+
+/* RESETEO BASICO Y FUENTES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    /*border: 1px solid red; /* Tu vision de rayos X para ver las cajas */
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+
+        /*-------$$$ HEADER PRINCIPAL $$$-------*/
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap:40px;
+
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+}
+
+/*--- LOGO --- */
+
+.tipologo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-right: 20px;
+}
+
+.caja-naranja {
+    background-color: #f59e0b;
+
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+}
+.caja-naranja svg{
+    width: 28px;
+    height: auto;
+    color: black;
+    transition: transform 0.3s;
+}
+
+.caja-naranja:hover svg {
+    color: black;
+    transform: scale(1.1);
+}
+
+
+
+/*----- navegacion ----*/
+
+.navLinks {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #a1a1a1;
+    font-weight: 700;
+}
+
+.navLinks a:hover {
+    color: #f59e0b;
+}
+
+/*----- caja de login ----*/
+
+.user-point {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.btn-login {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ffffff;
+
+    padding: 6px 20px 6px 6px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    gap:8px;
+}
+
+.btn-login:hover {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #0a0a0a;
+}
+
+
+.caja-icon-login {
+    background-color: transparent; 
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-icon-login svg {
+    width: 20px;
+}
+
+
+/* --- Boton Carrito --- */
+
+.user-point a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.caja-shopping {
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.caja-shopping svg {
+    width: 20px;
+    transition: transform 0.3s;
+}
+
+.caja-shopping:hover {
+    color: #f59e0b;
+}
+
+.caja-shopping:hover svg {
+    transform: scale(1.1);
+}
+
+/* --- Botón Hamburguesa (Oculto en PC por defecto) --- */
+.btn-hamburguesa {
+    display: none; 
+}
+/*----------fin del header ----------*/
+
+
+
+        /*---$$$ SECCION HERO $$$--- */
+
+/* fondo de la pagina */
+.hero {
+    min-height: 80vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.99) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.1) 100%), url('img/HeroFondo.jpeg');
+    background-size: cover;
+    background-position: right ;
+    background-repeat: no-repeat;
+    border-radius: 30px;
+
+    
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+    margin: 30px 6%;
+}
+
+
+.hero-contenido {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Etiqueta de "distribuidor mayorista" */
+
+.hero-etiqueta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    align-self: flex-start;
+    border: 1px solid #ff9900;
+    color: #ff9900;
+    background-color: rgba(248, 147, 31, 0.1);
+
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+
+/* Titulo principal */
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: clamp(3.2rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+}
+
+.texto-naranja {
+    color: #ff9900;
+}
+
+        /* Texto descriptivo debajo del título */
+
+.hero p {
+    color: #cccccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+    /* Botones debajo del texto descriptivo */
+
+.hero-botones {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-naranja {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    background-color: #ff9900;
+    color: #000000;
+
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.3s;
+    box-shadow: 0px 0px 20px rgba(255, 153, 0, 0.5);
+}
+
+.btn-naranja:hover {
+    background-color: #ffb800;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px rgba(255, 153, 0, 0.8);
+}
+
+.btn-transparente {
+    background-color: transparent;
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-transparente:hover {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+/*----------fin de la seccion hero ----------*/ 
+
+
+        /*------$$$  SECCION informacion $$$------*/
+
+.beneficios {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    padding: 80px 3%; 
+    margin-top: 40px;  
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* --- La Tarjeta Individual --- */
+.tarjeta-beneficio {
+    background-color: #18181b; 
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center; 
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+
+/* --- El círculo del Ícono --- */
+.icono-beneficio {
+    width: 70px;
+    height: 70px;
+    background-color: rgb(47, 37, 24); 
+    color: #ff9900;
+    border-radius: 50%; 
+    font-size: 1.8rem;
+    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+}
+
+/* --- Tamaño de los SVGs --- */
+.icono-beneficio svg {
+    width: 36px; 
+    height: 36px; 
+}
+
+.icono-beneficio:hover {
+    transform: scale(1.15);
+}
+
+/* --- Textos de la tarjeta --- */
+.tarjeta-beneficio h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.tarjeta-beneficio p {
+    color: #a0a0a0; 
+    font-size: 0.80rem;
+    line-height: 1.9;
+}
+/*----------fin de la sección informacion ----------*/
+
+
+
+        /* -----$$$ SECCION HERRAMIENTAS DESTACADAS $$$------*/
+
+.destacados {
+    padding: 40px 2%;
+}
+
+.destacados-cabecera {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding: 50px 8%; 
+}
+
+.cabecera-textos h2 {
+    color: #ffffff;
+    font-size: clamp(1.6rem, 3vw, 6rem);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.cabecera-textos p {
+    color: #a0a0a0;
+    max-width: 400px;
+}
+
+.enlace-catalogo {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    transition: 0.3s;
+    
+}
+
+.enlace-catalogo:hover {
+    color: #ff9900;
+}
+
+/*  CARRUSEL (SCROLL HORIZONTAL)  */
+
+.carrusel-productos {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permite hacer scroll a la izquierda/derecha */
+    scroll-snap-type: x mandatory; /* Hace que las tarjetas se "peguen" al borde al scrollear */
+    padding-bottom: 30px; /* Espacio para que no se corte la sombra */
+}
+
+/* Oculta la barra de scroll en Chrome/Safari para que se vea más limpio */
+.carrusel-productos::-webkit-scrollbar {
+    display: none;
+}
+
+/*  LA TARJETA DE PRODUCTO  */
+
+.tarjeta-producto {
+    width: 550px; /* Ancho fijo para cada tarjeta */
+    flex-shrink: 0;
+
+    scroll-snap-align: start; /* Punto de anclaje del scroll */
+    background-color: #16181c; /* Fondo oscuro */
+    border-radius: 16px;
+    overflow: hidden; /* Corta todo lo que se salga de los bordes curvos */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Contenedor de la Imagen --- */
+.producto-imagen-contenedor {
+    position: relative; /* Clave para posicionar etiquetas encima */
+    height: 650px;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+}
+
+.producto-imagen-contenedor img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hace que la imagen llene el espacio sin deformarse */
+}
+
+/* --- Etiquetas Flotantes (Position Absolute) --- */
+.etiqueta-categoria {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #ff9900;
+    color: #000000;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.btn-favorito {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #1e2025;
+    color: #ffffff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-favorito:hover {
+    background-color: #ff9900;
+    color: #000000;
+}
+
+/* --- Botón Naranja Inferior (Aparece en Hover) --- */
+.btn-agregar-hover {
+    position: absolute;
+    bottom: 15px; 
+    left: 30px;
+    width: 85%;
+
+    background-color: #ff9900;
+    color: #000000;
+    border: none;
+    border-radius: 18px;
+
+    padding: 20px 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer; /* Lo oculta por defecto */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+
+    transform: translateY(100%); /* Lo esconde hacia abajo por defecto */
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+
+.tarjeta-producto:hover .btn-agregar-hover {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.tarjeta-producto:hover .btn-agregar-hover:hover {
+    background-color: #ffc228;
+    transform: translateY(0) scale(1.05); 
+}
+
+/*   INFORMACIÓN INFERIOR (Textos)  */
+
+.producto-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+    
+}
+
+.producto-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    
+    margin-bottom: 15px; 
+}
+
+.producto-encabezado h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.producto-precio {
+    color: #ff9900;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.producto-descripcion {
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+
+        /*--------$$$ compras por sector $$$----------------*/
+
+
+.sectores {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 80px 5%;
+}
+
+.sectores-cabecera {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.sectores-cabecera h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+/* La rayita naranja debajo del título */
+.linea-naranja {
+    width: 60px;
+    height: 4px;
+    background-color: #ff9900;
+    margin: 0 auto; /* Lo centra horizontalmente */
+    border-radius: 2px;
+}
+
+/* --- El Contenedor Grid --- */
+.bento-sectores {
+    display: grid;
+    /* Creamos 3 columnas exactas */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Fijamos la altura de las celdas a 250px para hacer los cuadrados perfectos */
+    grid-auto-rows: 250px; 
+    gap: 20px;
+}
+
+/* --- La Tarjeta Individual --- */
+.tarjeta-sector {
+    position: relative;
+    display: flex;
+
+    align-items: flex-end; 
+    min-height: 220px;
+    border-radius: 20px;
+    padding: 40px;
+    text-decoration: none; /* Quita la raya de los enlaces */
+    overflow: hidden;
+    /* Un pequeño borde sutil como en tu diseño anterior */
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    transition: transform 0.3s;
+}
+
+.tarjeta-sector:hover {
+    transform: translateY(-5px); /* Se levanta un poquito al pasar el mouse */
+}
+
+/* --- Fondos con Degradado Oscuro --- */
+/* A cada tarjeta le ponemos su propia clase para cambiarle la foto facilmente */
+.bg-electricas {
+    background: linear-gradient(to right, rgba(10, 15, 20, 0.7) 0%, rgba(10, 15, 20, 0.2) 100%), url('img/herramientas.jpeg');
+    background-size: cover; /* Clave para que no deje espacios */
+    background-position: right; /* Centra la foto */
+    background-repeat: no-repeat;
+}
+
+.bg-seguridad {
+    background: linear-gradient(to right, rgba(10, 15, 20, 0.7) 0%, rgba(10, 15, 20, 0.2) 100%), url('img/casco.jpeg');
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.bg-medicion {
+    background: linear-gradient(to right, rgba(10, 15, 20, 0.7) 0%, rgba(10, 15, 20, 0.2) 100%), url('img/medicion.jpeg');
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.bg-equipamiento-pesado {
+    background: linear-gradient(to right, rgba(10, 15, 20, 0.7) 0%, rgba(10, 15, 20, 0.2) 100%), url('img/equipamiento.jpeg');
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+
+/* --- Textos de la Tarjeta --- */
+.sector-contenido {
+    position: relative;
+    z-index: 2;
+}
+
+.sector-contenido h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* --- El Enlace Oculto (Efecto Hover) --- */
+.enlace-abastecer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #ff9900;
+    font-size: 1rem;
+    font-weight: 600;
+    
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.enlace-abastecer svg {
+    width: 18px; /* Tamaño de la flecha */
+    height: auto;
+    transition: transform 0.3s ease; 
+}
+
+.tarjeta-sector:hover .enlace-abastecer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.enlace-abastecer:hover svg {
+    transform: translateX(5px); /* Empuja la flechita 5px a la derecha */
+}
+
+/* La tarjeta 1 (Eléctricas) ocupa 2 columnas */
+.tarjeta-sector:nth-child(1) {
+    grid-column: span 2;
+}
+
+/* La tarjeta 2 (Seguridad) ocupa 1 columna */
+.tarjeta-sector:nth-child(2) {
+    grid-column: span 1;
+}
+
+/* La tarjeta 3 (Medición) ocupa 1 columna */
+.tarjeta-sector:nth-child(3) {
+    grid-column: span 1;
+}
+
+/* La tarjeta 4 (Equipamiento Pesado) ocupa 2 columnas */
+.tarjeta-sector:nth-child(4) {
+    grid-column: span 2;
+}
+
+/*------- FIN DE SECCION PRODUCTOS DESTACADO ------*/
+
+
+
+        /* ------------$$$ Footer principio $$$--------- */
+.footer-principal {
+    background-color: #050505; 
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px 5% 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- Cuadricula de 3 Columnas --- */
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr ; 
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* --- Textos y Titulos del Footer --- */
+.footer-columna p {
+    color: #a0a0a0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.footer-columna h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* --- Columna 1: Logo --- */
+.logo-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.logo-footer i {
+    color: #ff9900;
+    background-color: rgba(255, 153, 0, 0.1);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* --- Columna 2: Enlaces --- */
+.enlaces ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.enlaces a {
+    color: #a0a0a0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.enlaces a:hover {
+    color: #ff9900;
+}
+
+/* --- Columna 3: Formulario --- */
+
+.formulario-boletin {
+    display: flex;
+    gap: 10px;
+}
+
+.formulario-boletin input {
+    flex-grow: 1;
+    background-color: #16181c;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c2c2c2;
+    padding: 12px 15px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.formulario-boletin input::placeholder {
+    color: #606060;
+}
+
+.formulario-boletin input:hover {
+    color: #f1f1f1;
+}
+
+
+.formulario-boletin button {
+    background-color: #ff9900;
+    color: #000000;
+    border: none;
+    font-weight: 800;
+    padding: 0 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formulario-boletin button:hover {
+    background-color: #ffc228;
+}
+
+/* --- Barra Inferior (Copyright) --- */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.footer-bottom p {
+    color: #606060;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.enlaces-legales {
+    display: flex;
+    gap: 20px;
+}
+
+.enlaces-legales a {
+    color: #606060;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.enlaces-legales a:hover {
+    color: #ffffff;
+}
+
+
+
+
+        /* ----------$$$ IA BOTON ASISTENTE $$$--------------*/
+
+.chat-asistente-contenedor {
+    position: fixed; 
+    bottom: 40px;   
+    right: 20px;     
+    z-index: 999;   
+
+    display:flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+/* --- 2. EL BOTON NARANJA (MODIFICADO Y ACHICADO) --- */
+.btn-asistente-ia {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #ff9900;
+    color: #000000;
+    border: none;
+    
+    /* Para centrar el ícono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+    cursor: pointer;
+
+    /* --- TRASLUCIDEZ POR DEFECTO --- */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* --- 3. EL ICONO SVG (ACHICADO) --- */
+.btn-asistente-ia svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* --- 4. LA BURBUJA DE TEXTO (OCULTA POR DEFECTO) --- */
+.text-asistente-pop {
+    background-color: #16181c; 
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px); 
+    transition: all 0.3s ease;
+}
+
+/* efectos de hover */
+
+/* A. Cuando pasas el mouse por el contenedor, el BOTÓN se vuelve sólido */
+.chat-asistente-contenedor:hover .btn-asistente-ia {
+    opacity: 1; 
+    background-color: #ffc228; 
+    box-shadow: 0 6px 20px rgba(255, 153, 0, 0.5); 
+    transform: translateY(-3px); 
+}
+
+/*  la BURBUJA aparece y se mueve */
+.chat-asistente-contenedor:hover .text-asistente-pop {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* C. Animación del icono SVG en hover */
+.chat-asistente-contenedor:hover .btn-asistente-ia svg {
+    transform: scale(1.1); /* Crece un poquito el globo */
+    width: 15px;
+    height: 15px;
+}
+
+/* =========================================
+    ADAPTACION PARA CELULARES Y TABLETS (RESPONSIVE)
+========================================= */
+
+
+@media (max-width: 900px) {
+    /* 1. Ocultamos los enlaces de texto */
+    .navLinks {
+        display: none;
+    }
+
+    /* 2. Ocultamos el boton de Ingresar de PC */
+    .btn-login {
+        display: none;
+    }
+
+    /* 3. Mostramos el boton hamburguesa */
+    .btn-hamburguesa {
+        display: flex; /* Lo hace visible y permite alinear los SVGs adentro */
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+
+    /* Transformamos el Nav en un panel desplegable idéntico a tu diseño */
+    .nav-principal {
+        position: absolute;
+        top: 100%; /* Justo debajo de la barra negra */
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a; /* Fondo super oscuro */
+        padding: 20px 5% 40px;
+        border-bottom: 1px solid #333;
+        
+        display: flex;
+        flex-direction: column;
+        
+        /* Animación de entrada */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+
+    /* Cuando JS le agregue esta clase, el menú aparecerá mágicamente */
+    .nav-principal.activo {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+    /*ultima edicion  <----*/
+    .nav-principal.activo .navLinks {
+        display: flex; /* Muestra los enlaces en columna */
+    }
+
+    .navLinks {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 20px;
+    }
+
+    .navLinks a {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    /* La rayita separadora de tu diseño */
+    .separador-movil {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 20px 0;
+    }
+
+    /* El botón grande naranja de "Acceso Mayorista" */
+    .btn-login-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        background-color: #ff9900;
+        color: #000000;
+        border: none;
+        padding: 15px;
+        border-radius: 12px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        cursor: pointer;
+        width: 100%;
+    }
+
+
+    /* --- HERO --- */
+    .hero {
+        margin: 15px 3%; 
+        padding: 40px 5%;
+        border-radius: 20px;
+        text-align: center; 
+        background-position: center; 
+    }
+
+    .hero-etiqueta {
+        align-self: center; 
+    }
+
+    .hero-botones {
+        flex-direction: column; 
+        width: 100%;
+    }
+
+    .hero-botones a {
+        width: 100%; 
+        justify-content: center;
+    }
+
+
+    /* --- BENEFICIOS --- */
+    .beneficios {
+        grid-template-columns: 1fr; 
+        padding: 50px 5%;
+    }
+
+
+    /* --- DESTACADOS (CARRUSEL) --- */
+    .destacados-cabecera {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 40px 8%;
+    }
+
+    .cabecera-textos h2 {
+        font-size: 2rem; 
+    }
+
+    .tarjeta-producto {
+        width: 55vw; 
+    }
+
+    .producto-imagen-contenedor {
+        height: 350px; 
+    }
+    
+    .btn-agregar-hover {
+        transform: translateY(0);
+        opacity: 1;
+        bottom: 10px;
+        left: 10px;
+        width: calc(100% - 20px);
+        padding: 15px 10px;
+        font-size: 1rem;
+    }
+
+
+    /* --- BENTO SECTORES --- */
+    .sectores-cabecera h2 {
+        font-size: 1.8rem;
+    }
+
+    .bento-sectores {
+        grid-template-columns: 1fr; 
+        grid-auto-rows: 200px; 
+    }
+
+
+    .tarjeta-sector:nth-child(1),
+    .tarjeta-sector:nth-child(4) {
+        grid-column: span 1; 
+    }
+
+
+    /* --- FOOTER --- */
+    .footer-top {
+        grid-template-columns: 1fr; /* 1 sola columna */
+        text-align: left; /* Centramos todo */
+    }
+
+    .logo-footer {
+        justify-content: center;
+    }
+
+    .formulario-boletin {
+        flex-direction: column; /* Input arriba, botón abajo */
+    }
+
+    .footer-bottom {
+        flex-direction: column; /* Apilamos legales y copyright */
+        gap: 20px;
+        text-align: center;
+    }
+
+    .formulario-boletin button {
+        padding: 15px; /* Le da altura para que no se vea aplastado */
+        width: 100%;   
+        font-size: 1.1rem;
+    }
+
+
+    /* --- ASISTENTE IA --- */
+    .chat-asistente-contenedor {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .text-asistente-pop {
+        display: none; 
+    }
+    
+    .btn-asistente-ia {
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn-asistente-ia svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chat-asistente-contenedor:hover .btn-asistente-ia svg {
+    transform: scale(1.1); /* Crece un poquito el globo */
+    width: 30px;
+    height: 30px;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

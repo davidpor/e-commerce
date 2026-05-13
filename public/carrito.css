@@ -1,0 +1,94 @@
+/* =========================================
+   PÁGINA DE COTIZACIÓN / CARRITO
+   ========================================= */
+
+.seccion-cotizacion {
+    padding: 130px 20px 60px; /* Mismo margen superior que el catálogo para el header */
+    background-color: #0a0a0a;
+    min-height: 80vh; /* Asegura que la página sea alta aunque esté vacía */
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor-cotizacion {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- CABECERA Y LÍNEA DIVISORIA --- */
+.cabecera-cotizacion {
+    border-bottom: 1px solid #222; /* La línea sutil debajo del título */
+    padding-bottom: 20px;
+    margin-bottom: 80px; /* Da bastante espacio antes de llegar al centro */
+}
+
+.cabecera-cotizacion h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+/* --- CONTENEDOR CENTRAL CENTRADO --- */
+.estado-vacio {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todo horizontalmente */
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* --- ÍCONO CIRCULAR --- */
+.icono-vacio {
+    width: 100px;
+    height: 100px;
+    background-color: #161616; /* Gris un poco más claro que el fondo */
+    border-radius: 50%; /* Lo hace redondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.icono-vacio i {
+    font-size: 2.5rem;
+    color: #555; /* Gris oscuro para el ícono */
+}
+
+/* --- TEXTOS --- */
+.estado-vacio h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.estado-vacio p {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 40px;
+}
+
+/* --- BOTÓN CON EFECTO DE RESPLANDOR --- */
+.btn-ver-catalogo {
+    background-color: #f59e0b; /* Tu naranja/ámbar */
+    color: #000;
+    text-decoration: none;
+    padding: 16px 35px;
+    border-radius: 50px; /* Bordes totalmente redondeados */
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    
+    /* ACÁ ESTÁ EL BRILLO (Sombra exterior difuminada) */
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.25); 
+}
+
+.btn-ver-catalogo:hover {
+    background-color: #fbbf24; /* Un naranja más clarito al pasar el mouse */
+    transform: translateY(-3px); /* Se levanta un poquito */
+    box-shadow: 0 5px 40px rgba(245, 158, 11, 0.45); /* El brillo se hace más fuerte */
+}

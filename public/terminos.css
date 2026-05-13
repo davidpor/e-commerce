@@ -1,0 +1,108 @@
+/* =========================================
+    PAGINA LEGAL (TERMINOS Y CONDICIONES)
+   ========================================= */
+
+    *{
+        background-color: #16181c;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+
+.seccion-legal {
+    padding: 100px 5% 80px; 
+    background-color: #000000; /* Tu fondo negro base */
+    min-height: 80vh;
+    display: flex;
+    justify-content: center; 
+}
+
+/* El documento en si, restringimos el ancho para que sea facil de leer */
+.contenedor-legal {
+    max-width: 850px;
+    width: 100%;
+    background-color: #16181c; /* El mismo fondo de tus tarjetas de productos */
+    padding: 60px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Tu borde sutil */
+}
+
+.cabecera-legal {
+    margin-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
+}
+
+.cabecera-legal h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.cabecera-legal p {
+    color: #a0a0a0; /* Tu gris de textos secundarios */
+    font-size: 0.9rem;
+}
+
+/* Bloques de parrafos */
+.bloque-texto {
+    margin-bottom: 40px;
+}
+
+.bloque-texto h2 {
+    color: #ff9900; /* Tu naranja principal */
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.bloque-texto p {
+    color: #cccccc; /* Gris intermedio para facilitar la lectura */
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* Lista con viñetas personalizadas */
+.bloque-texto ul {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.bloque-texto li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    color: #cccccc;
+    line-height: 1.6;
+}
+
+/* La flechita naranja antes de cada item de la lista */
+.bloque-texto li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #ff9900;
+    font-weight: 900;
+}
+
+.bloque-texto strong {
+    color: #ffffff; 
+    font-weight: 700;
+}
+
+/* Adaptacion para celulares */
+@media (max-width: 900px) {
+    .contenedor-legal {
+        padding: 30px 20px;
+    }
+    
+    .cabecera-legal h1 {
+        font-size: 1.8rem;
+    }
+}
