@@ -1,6 +1,7 @@
 // src/app.js
 require('dotenv').config();
 
+const path = require('path');
 const express    = require('express');
 const cors       = require('cors');
 const helmet     = require('helmet');
@@ -30,8 +31,22 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin:      process.env.FRONTEND_URL,
-  credentials: true,
+  origin: (origin, callback) => {
+    // Lista de orígenes permitidos
+    const permitidos = [
+      'http://localhost:3001',   // frontend en desarrollo local
+      'http://localhost:3000',   // para pruebas desde el mismo puerto
+      process.env.FRONTEND_URL, // URL configurada en .env
+    ].filter(Boolean);
+
+    // Permitimos requests sin origin (curl, Postman, Swagger)
+    if (!origin || permitidos.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS bloqueado para: ${origin}`));
+    }
+  },
+  credentials: true
 }));
 
 // Rate limiting general — aplica a todas las rutas
@@ -41,6 +56,8 @@ app.use('/api', limiterGeneral);
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Servimos las imágenes subidas como archivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 // ── Documentación Swagger ──────────────────────────────────────────────────
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {

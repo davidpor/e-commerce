@@ -1,7 +1,8 @@
 // src/modules/catalog/catalog.router.js
-const { Router } = require('express');
-const ctrl = require('./catalog.controller');
+const { Router }   = require('express');
+const ctrl         = require('./catalog.controller');
 const { autenticar, autorizar } = require('../../middlewares/auth.middleware');
+const upload       = require('../../middlewares/upload.middleware');
 
 const router = Router();
 
@@ -15,7 +16,6 @@ const router = Router();
  *       - in: query
  *         name: buscar
  *         schema: { type: string }
- *         description: Busca en nombre, SKU y descripción
  *       - in: query
  *         name: categoria_id
  *         schema: { type: integer }
@@ -39,7 +39,6 @@ const router = Router();
  *         schema: { type: integer }
  *     responses:
  *       200: { description: Detalle del producto }
- *       404: { description: Producto no encontrado }
  *   put:
  *     summary: Actualizar producto
  *     tags: [Catálogo]
@@ -69,35 +68,21 @@ const router = Router();
  *       200: { description: Lista de categorías }
  */
 
-// ── Categorías ─────────────────────────────────────────────────────────────
-
-// GET: cualquier usuario logueado puede ver las categorías
-router.get('/categories', autenticar, ctrl.getCategorias);
-
-// POST: solo admin puede crear categorías
+router.get('/categories',  autenticar, ctrl.getCategorias);
 router.post('/categories', autenticar, autorizar('admin'), ctrl.crearCategoria);
 
-// ── Productos ──────────────────────────────────────────────────────────────
-
-// GET: listar productos con filtros (todos los roles)
-router.get('/', autenticar, ctrl.getProductos);
-
-// GET: buscar por slug (para páginas de detalle en el frontend)
+router.get('/',         autenticar, ctrl.getProductos);
 router.get('/slug/:slug', autenticar, ctrl.getProductoPorSlug);
+router.get('/:id',      autenticar, ctrl.getProductoPorId);
 
-// GET: detalle por ID
-router.get('/:id', autenticar, ctrl.getProductoPorId);
+// Usamos upload.single('imagen') para aceptar un archivo con el campo 'imagen'
+router.post('/',   autenticar, autorizar('admin'),
+  upload.single('imagen'), ctrl.crearProducto);
 
-// POST: solo admin puede crear productos
-router.post('/', autenticar, autorizar('admin'), ctrl.crearProducto);
+router.put('/:id', autenticar, autorizar('admin', 'vendedor'),
+  upload.single('imagen'), ctrl.actualizarProducto);
 
-// PUT: admin y vendedor pueden actualizar
-router.put('/:id', autenticar, autorizar('admin', 'vendedor'), ctrl.actualizarProducto);
-
-// DELETE: solo admin (soft delete)
-router.delete('/:id', autenticar, autorizar('admin'), ctrl.eliminarProducto);
-
-// PATCH: actualizar stock (admin y vendedor)
-router.patch('/:id/stock', autenticar, autorizar('admin', 'vendedor'), ctrl.actualizarStock);
+router.delete('/:id',       autenticar, autorizar('admin'), ctrl.eliminarProducto);
+router.patch('/:id/stock',  autenticar, autorizar('admin', 'vendedor'), ctrl.actualizarStock);
 
 module.exports = router;

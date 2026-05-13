@@ -42,14 +42,18 @@ const getProductoPorSlug = async (req, res, next) => {
 
 const crearProducto = async (req, res, next) => {
   try {
-    const producto = await service.crearProducto(req.body);
+    const producto = await service.crearProducto(req.body, req.file);
     res.status(201).json({ producto });
   } catch (e) { next(e); }
 };
 
 const actualizarProducto = async (req, res, next) => {
   try {
-    const producto = await service.actualizarProducto(req.params.id, req.body);
+    // Log temporal para debug
+    console.log('[Upload] req.file:', req.file);
+    console.log('[Upload] req.body keys:', Object.keys(req.body));
+    
+    const producto = await service.actualizarProducto(req.params.id, req.body, req.file);
     res.json({ producto });
   } catch (e) { next(e); }
 };
