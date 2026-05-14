@@ -10,6 +10,11 @@ const emailService = require('../notifications/email.service');
 // ── Función privada: recalcula los totales de una cotización ───────────────
 const recalcularTotales = async (quoteId) => {
   const items = await QuoteItem.findAll({ where: { quote_id: quoteId } });
+  if (!items || items.length === 0) {
+    const quote = await Quote.findByPk(quoteId);
+    await quote.update({ subtotal: 0, iva_monto: 0, total: 0 });
+    return quote;
+  }
 
   const subtotal = items.reduce(
     (acc, item) => acc + parseFloat(item.subtotal), 0
@@ -31,6 +36,16 @@ const recalcularTotales = async (quoteId) => {
   });
 
   return quote;
+};
+// ── Función privada: verifica si una cotización ha vencido ────────────────
+const verificarVencimiento = async (quoteId) => {
+  const quote = await Quote.findByPk(quoteId);
+  if (!quote) return;
+
+  const hoy = new Date().toISOString().split('T')[0];
+  if (quote.estado === 'aprobada' && quote.fecha_vencimiento < hoy) {
+    await quote.update({ estado: 'vencida' });
+  }
 };
 
 // ── Crear cotización ───────────────────────────────────────────────────────
@@ -143,7 +158,7 @@ const enviarCotizacion = async (quoteId, userId) => {
 
   await cotizacion.update({ estado: 'pendiente' });
   const cotizacionCompleta = await getCotizacionPorId(quoteId);
-  
+
 await emailService.enviarCotizacionRecibida({
   email:      cotizacionCompleta.creador.email,
   nombre:     cotizacionCompleta.creador.nombre,
@@ -170,6 +185,13 @@ const aprobarCotizacion = async (quoteId, reviewerId, data = {}) => {
 
   // Recalculamos por si el vendedor cambió el descuento extra
   await recalcularTotales(quoteId);
+
+const aprobada = await getCotizacionPorId(quoteId);
+await emailService.enviarCotizacionAprobada({
+  email:      aprobada.creador.email,
+  nombre:     aprobada.creador.nombre,
+  cotizacion: aprobada,
+});
 
   return getCotizacionPorId(quoteId);
 };
