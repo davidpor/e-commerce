@@ -763,6 +763,21 @@ header {
     margin-bottom: 15px;
 }
 
+.logo-footer-caja {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 10px;
+    padding: 2px;
+    color: #000000;
+    background-color: #ff9900;
+}
+
+.logo-footer-caja svg {
+    width: 35px;
+    height: 35px;
+}
+
 .logo-footer i {
     color: #ff9900;
     background-color: rgba(255, 153, 0, 0.1);
@@ -1180,16 +1195,6 @@ header {
 }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

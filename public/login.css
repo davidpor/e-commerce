@@ -93,6 +93,45 @@ body {
     color: #888;
 }
 
+
+/* 1. La caja contenedora: Sirve de "ancla" para que el ojito no se escape */
+.caja-input-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px; /* Un pequeño margen si el label está muy pegado */
+}
+
+/* 2. El Input: Le decimos que ocupe el 100% pero le dejamos un "hueco" a la derecha */
+.caja-input-password input {
+    width: 100%;
+    padding-right: 45px; /* ¡Clave! Evita que el texto pise al SVG */
+    
+    /* Nota: No le pongo border ni background acá porque 
+       seguramente ya los hereda de tu diseño general de inputs */
+}
+
+/* 3. El botón del Ojito: Flotando a la derecha */
+.btn-ojito {
+    position: absolute;
+    right: 15px; /* Lo empujamos un poquito hacia adentro */
+    height: 100%; /* Toma el alto total del input */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #888; /* Color gris apagado por defecto */
+    transition: color 0.3s ease;
+}
+
+/* 4. El toque interactivo con el color de tu marca */
+.btn-ojito:hover {
+    color: #f59e0b; /* Se ilumina en naranja al pasar el mouse */
+}
+
+
+
 .btn-auth {
     background-color: #f59e0b;
     color: #000000;
