@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - ObraMaestra</title>
     
-     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css"> 
     <link rel="stylesheet" href="catalogo.css">
-    <link rel="stylesheet" href="carrito.css">
     </head>
 
 <body>
@@ -83,112 +82,96 @@
             </div>
         </div>
 
-        <div class="grilla-4cols">
 
             <!-- Tarjeta de Producto  -->
+<!-- ############################################################################### -->
+        
+        <div class="grilla-4cols" id="contenedor-productos">
             
             <div class="tarjeta-v2">
-                <div class="t-img-box">
-                    <span class="category-pildora">ELÉCTRICAS</span>
-                    <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
-                    <img src="img/taladro.jpeg" alt="Taladro Percutor">
-                    
-                    <button class="btn-agregar-pedido">
-                        <i class="fa-solid fa-cart-shopping"></i> Agregar al Pedido
-                    </button>
-                </div>
+    <div class="t-img-box">
+        <span class="category-pildora">Bosch</span>
+        <img src="img/taladro.jpeg" alt="Amoladora Bosch">
+        <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="t-content-box">
+        <div class="t-head">
+            <h3>Amoladora Angular Bosch 750W</h3>
+            <div class="price">$85.000</div>
+        </div>
+        <p class="t-desc">Herramienta profesional ideal para cortes precisos en metales y mampostería. Alta durabilidad.</p>
+        <ul class="t-specs">
+            <li><span class="dot-naranja"></span> SKU: AMOL-001</li>
+            <li><span class="dot-naranja"></span> Stock: 15 un.</li>
+        </ul>
+        <button class="btn-agregar-pedido">Agregar al carrito</button>
+    </div>
+</div>
 
-                <div class="t-content-box">
-                    <div class="t-head">
-                        <h3>Taladro Percutor 800W</h3>
-                        <span class="price">$45.000</span>
-                    </div>
-                    <p class="t-desc">Taladro percutor de alto rendimiento para mampostería y concreto. Ideal para uso continuo en obra.</p>
-                    <ul class="t-specs">
-                        <li><span class="dot-naranja"></span> MOTOR DE 800W</li>
-                        <li><span class="dot-naranja"></span> MANDRIL DE 13MM</li>
-                        <li><span class="dot-naranja"></span> REVERSIBLE</li>
-                        <li><span class="dot-naranja"></span> VELOCIDAD VARIABLE</li>
-                    </ul>
-                </div>
-            </div>
+<div class="tarjeta-v2">
+    <div class="t-img-box">
+        <span class="category-pildora">Stanley</span>
+        <img src="img/taladro.jpeg" alt="Taladro Stanley">
+        <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="t-content-box">
+        <div class="t-head">
+            <h3>Taladro Percutor 13mm 600W</h3>
+            <div class="price">$62.500</div>
+        </div>
+        <p class="t-desc">Velocidad variable y reversible. Empuñadura lateral multiposición y barra de profundidad.</p>
+        <ul class="t-specs">
+            <li><span class="dot-naranja"></span> SKU: TAL-042</li>
+            <li><span class="dot-naranja"></span> Stock: 8 un.</li>
+        </ul>
+        <button class="btn-agregar-pedido">Agregar al carrito</button>
+    </div>
+</div>
 
-            <div class="tarjeta-v2">
-                <div class="t-img-box">
-                    <span class="category-pildora">MANUALES</span>
-                    <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
-                    <img src="img/taladro.jpeg" alt="Martillo">
-                    
-                    <button class="btn-agregar-pedido">
-                        <i class="fa-solid fa-cart-shopping"></i> Agregar al Pedido
-                    </button>
-                </div>
-                <div class="t-content-box">
-                    <div class="t-head">
-                        <h3>Martillo Galponero</h3>
-                        <span class="price">$12.500</span>
-                    </div>
-                    <p class="t-desc">Martillo de acero forjado de una sola pieza. Mango ergonómico para reducir la vibración al máximo.</p>
-                    <ul class="t-specs">
-                        <li><span class="dot-naranja"></span> ACERO AL CARBONO</li>
-                        <li><span class="dot-naranja"></span> ANTI-VIBRACIÓN</li>
-                        <li><span class="dot-naranja"></span> SACA CLAVOS</li>
-                        <li><span class="dot-naranja"></span> PESO: 600G</li>
-                    </ul>
-                </div>
-            </div>
+<div class="tarjeta-v2">
+    <div class="t-img-box">
+        <span class="category-pildora">DeWalt</span>
+        <img src="img/taladro.jpeg" alt="Sierra Circular DeWalt">
+        <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="t-content-box">
+        <div class="t-head">
+            <h3>Sierra Circular 7-1/4" 1400W</h3>
+            <div class="price">$145.000</div>
+        </div>
+        <p class="t-desc">Diseño ergonómico y ligero. Ajuste de ángulo de bisel hasta 48 grados para cortes complejos.</p>
+        <ul class="t-specs">
+            <li><span class="dot-naranja"></span> SKU: SIE-011</li>
+            <li><span class="dot-naranja"></span> Stock: 3 un.</li>
+        </ul>
+        <button class="btn-agregar-pedido">Agregar al carrito</button>
+    </div>
+</div>
 
-            <div class="tarjeta-v2">
-                <div class="t-img-box">
-                    <span class="category-pildora">SEGURIDAD</span>
-                    <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
-                    <img src="img/taladro.jpeg" alt="Casco">
-                    
-                    <button class="btn-agregar-pedido">
-                        <i class="fa-solid fa-cart-shopping"></i> Agregar al Pedido
-                    </button>
-                </div>
-                <div class="t-content-box">
-                    <div class="t-head">
-                        <h3>Casco de Seguridad</h3>
-                        <span class="price">$8.900</span>
-                    </div>
-                    <p class="t-desc">Casco dieléctrico de alta resistencia a impactos con arnés ajustable a 4 puntos.</p>
-                    <ul class="t-specs">
-                        <li><span class="dot-naranja"></span> POLICARBONATO</li>
-                        <li><span class="dot-naranja"></span> ARNÉS 4 PUNTOS</li>
-                        <li><span class="dot-naranja"></span> DIELÉCTRICO</li>
-                        <li><span class="dot-naranja"></span> NORMA ANSI</li>
-                    </ul>
-                </div>
-            </div>
+<div class="tarjeta-v2">
+    <div class="t-img-box">
+        <span class="category-pildora">Makita</span>
+        <img src="img/taladro.jpeg" alt="Rotomartillo Makita">
+        <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
+    </div>
+    <div class="t-content-box">
+        <div class="t-head">
+            <h3>Rotomartillo SDS Plus 800W</h3>
+            <div class="price">$198.000</div>
+        </div>
+        <p class="t-desc">Tres modos de operación: rotación, percusión y rotación con percusión. Fuerza de impacto 2.9J.</p>
+        <ul class="t-specs">
+            <li><span class="dot-naranja"></span> SKU: ROT-089</li>
+            <li><span class="dot-naranja"></span> Stock: 5 un.</li>
+        </ul>
+        <button class="btn-agregar-pedido">Agregar al carrito</button>
+    </div>
+</div>
 
-            <div class="tarjeta-v2">
-                <div class="t-img-box">
-                    <span class="category-pildora">MEDICIÓN</span>
-                    <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
-                    <img src="img/taladro.jpeg" alt="Cinta Métrica">
-                    
-                    <button class="btn-agregar-pedido">
-                        <i class="fa-solid fa-cart-shopping"></i> Agregar al Pedido
-                    </button>
-                </div>
-                <div class="t-content-box">
-                    <div class="t-head">
-                        <h3>Cinta Métrica 8m</h3>
-                        <span class="price">$6.200</span>
-                    </div>
-                    <p class="t-desc">Flexómetro de carcasa bimaterial resistente a caídas. Recubrimiento protector en la cinta.</p>
-                    <ul class="t-specs">
-                        <li><span class="dot-naranja"></span> LARGO DE 8 METROS</li>
-                        <li><span class="dot-naranja"></span> CINTA DE NYLON</li>
-                        <li><span class="dot-naranja"></span> PUNTA MAGNÉTICA</li>
-                        <li><span class="dot-naranja"></span> PAUSA RÁPIDA</li>
-                    </ul>
-                </div>
-            </div>
+        </div>
+        
 
-            </div>
+<!--  ########################################################################  -->
 
         <div class="paginacion-contenedor">
             <button class="btn-pagina activo">1</button>
@@ -255,14 +238,13 @@
         <span class="text-asistente-pop">Asistente virtual</span>
 
         <button class="btn-asistente-ia" aria-label="Abrir asistente de IA">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-message-square-icon lucide-bot-message-square"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg>
         </button>
         
     </div>
 
     <script src="menu.js"></script>
+    <!-- <script src="catalogo.js"></script> -->
 
 </body>
 

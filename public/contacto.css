@@ -386,6 +386,82 @@ header {
 ========================================= */
 
 @media (max-width: 900px) {
+
+     /* 1. Ocultamos los enlaces de texto */
+    .navLinks {
+        display: none;
+    }
+
+    /* 2. Ocultamos el boton de Ingresar de PC */
+    .btn-login {
+        display: none;
+    }
+
+    /* 3. Mostramos el boton hamburguesa */
+    .btn-hamburguesa {
+        display: flex; /* Lo hace visible y permite alinear los SVGs adentro */
+        background: transparent;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+
+    /* Transformamos el Nav en un panel desplegable idéntico a tu diseño */
+    .nav-principal {
+        position: absolute;
+        top: 100%; /* Justo debajo de la barra negra */
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a; /* Fondo super oscuro */
+        padding: 20px 5% 40px;
+        border-bottom: 1px solid #333;
+        
+        display: flex;
+        flex-direction: column;
+        
+        /* Animación de entrada */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+    }
+
+    /* Cuando JS le agregue esta clase, el menú aparecerá mágicamente */
+    .nav-principal.activo {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+
+    /*ultima edicion  <----*/
+    .nav-principal.activo .navLinks {
+        display: flex; /* Muestra los enlaces en columna */
+    }
+
+    .navLinks {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 20px;
+    }
+
+    .navLinks a {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    /* La rayita separadora de tu diseño */
+    .separador-movil {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 20px 0;
+    }
+
+
     /* Las columnas pasan a apilarse */
     .grilla-contacto {
         grid-template-columns: 1fr;

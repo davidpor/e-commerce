@@ -28,11 +28,28 @@ body {
 }
 
 .auth-logo {
-    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
     font-weight: 900;
-    margin-bottom: 30px;
-    letter-spacing: 1px;
-    text-align: center;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.logo-caja-login {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    border-radius: 10px;
+    padding: 2px;
+    color: #000000;
+    background-color: #ff9900;
+}
+
+.logo-caja-login svg {
+    width: 35px;
+    height: 35px;
 }
 
 .auth-logo i {

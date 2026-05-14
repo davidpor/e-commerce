@@ -805,20 +805,7 @@ header {
 
 
 /* 3. Para celulares estándar (hasta 480px) */
-@media (max-width: 480px) {
-    /* La grilla pasa a ser de UNA sola columna (un producto por fila) */
-    .grilla-4cols {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Achicamos un poco los textos de la tarjeta para que entren bien */
-    .tarjeta-herramienta .t-content-box h3 {
-        font-size: 0.9rem;
-    }
-    .tarjeta-herramienta .price {
-        font-size: 1.1rem;
-    }
-}
+
 
 /* --- FOOTER --- */
     .footer-top {

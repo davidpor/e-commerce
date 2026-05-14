@@ -20,8 +20,13 @@ la pantalla baja de los 900px, en el login y registro le detalle de la password 
 agregue las paginas que faltaban, le agregue los enlaces que faltaban aun asi falta la pagina de productos osea de producto en especifico mm mas retoques en lo del design reponsive y mm mas cosas que pulir como agregarle algun fondo o imagen a la pagina del login e registro mm agregarle el header en todo caso pagina del cliente, lo que hice ahora fue parte de lo que dije y pulir mas del responsive design con crear paginas que faltaban ademas de unir otros enlaces.
 
 
+14/05/2026 : 13:58 -
+
+trate de hacer una conexion entre la base de datos, el back y el front pero se complico asi que no le meti mas mano y queda casi como estaba en el anterior commit.
+mas algunos arreglos o pulidos que se hicieron de nuevo en el front. 
 
 
+ 
 
 
 
