@@ -4,7 +4,6 @@
 
 En base al repositorio de david se le agrego la carpeta public donde estan archivos html y css - 
 aun asi le faltan algunos detalles visuales y conexions con los links en algunas partes ademas de arreglar ciertos detalles y parte del resposive design para dispositivos moviles.  
-
 una carpeta con las imagenes que son usadas en el html o css y no mucho mas despues desde mi configuracion un archivo .env que esta ignorado creo.
 
 
@@ -16,6 +15,9 @@ ademas de que le agregue archivos .js para los movimientos o ciertas acciones en
 la pantalla baja de los 900px, en el login y registro le detalle de la password para verse cuando se la presiona. 
 
 
+14/05/2026 : 03:26 - 
+
+agregue las paginas que faltaban, le agregue los enlaces que faltaban aun asi falta la pagina de productos osea de producto en especifico mm mas retoques en lo del design reponsive y mm mas cosas que pulir como agregarle algun fondo o imagen a la pagina del login e registro mm agregarle el header en todo caso pagina del cliente, lo que hice ahora fue parte de lo que dije y pulir mas del responsive design con crear paginas que faltaban ademas de unir otros enlaces.
 
 
 

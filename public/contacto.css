@@ -1,0 +1,397 @@
+/* =========================================
+   PÁGINA: CONTACTO
+========================================= */
+
+
+        /*-------$$$ HEADER PRINCIPAL $$$-------*/
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap:40px;
+
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+}
+
+/*--- LOGO --- */
+
+.tipologo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-right: 20px;
+}
+
+.caja-naranja {
+    background-color: #f59e0b;
+
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+}
+.caja-naranja svg{
+    width: 28px;
+    height: auto;
+    color: black;
+    transition: transform 0.3s;
+}
+
+.caja-naranja:hover svg {
+    color: black;
+    transform: scale(1.1);
+}
+
+
+
+/*----- navegacion ----*/
+
+.navLinks {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #a1a1a1;
+    font-weight: 700;
+}
+
+.navLinks a:hover {
+    color: #f59e0b;
+}
+
+/*----- caja de login ----*/
+
+.user-point {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.btn-login {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ffffff;
+
+    padding: 6px 20px 6px 6px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    gap:8px;
+}
+
+.btn-login:hover {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #0a0a0a;
+}
+
+
+.caja-icon-login {
+    background-color: transparent; 
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-icon-login svg {
+    width: 20px;
+}
+
+
+/* --- Boton Carrito --- */
+
+.user-point a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.caja-shopping {
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.caja-shopping svg {
+    width: 20px;
+    transition: transform 0.3s;
+}
+
+.caja-shopping:hover {
+    color: #f59e0b;
+}
+
+.caja-shopping:hover svg {
+    transform: scale(1.1);
+}
+
+/* --- Botón Hamburguesa (Oculto en PC por defecto) --- */
+.btn-hamburguesa {
+    display: none; 
+}
+/*----------fin del header ----------*/
+
+
+
+.seccion-contacto {
+    padding: 20px 5%;
+    background-color: #0a0a0a; /* Fondo oscuro base */
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.contenedor-contacto-wide {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- TÍTULO PRINCIPAL --- */
+.cabecera-contacto {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.cabecera-contacto h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #f59e0b; /* Naranja */
+    margin-bottom: 15px;
+}
+
+.cabecera-contacto p {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+}
+
+/* --- GRILLA DE 2 COLUMNAS --- */
+.grilla-contacto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+/* =========================================
+   COLUMNA IZQUIERDA: INFORMACIÓN
+========================================= */
+.columna-info h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.desc-info {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.lista-tarjetas-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tarjeta-dato {
+    background-color: #161616;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.tarjeta-dato:hover {
+    transform: translateX(5px);
+    border-color: #f59e0b;
+}
+
+/* El iconito naranja dentro de la tarjeta */
+.icono-dato {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.texto-dato h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.texto-dato p {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* =========================================
+   COLUMNA DERECHA: FORMULARIO
+========================================= */
+.caja-formulario {
+    background-color: #161616;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    padding: 35px;
+}
+
+.caja-formulario h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.grupo-input label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.grupo-input input,
+.grupo-input textarea {
+    background-color: #222222; /* Fondo oscuro para el input */
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.grupo-input input::placeholder,
+.grupo-input textarea::placeholder {
+    color: #666666;
+}
+
+.grupo-input input:focus,
+.grupo-input textarea:focus {
+    border-color: #f59e0b;
+}
+
+.grupo-input textarea {
+    resize: vertical; /* Permite estirar solo hacia abajo */
+    min-height: 100px;
+}
+
+.btn-enviar {
+    background-color: #f59e0b;
+    color: #000000;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #fbbf24;
+}
+
+/* =========================================
+   SECCIÓN DEL MAPA INFERIOR
+========================================= */
+.caja-mapa {
+    background-color: #1a1a1a;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mapa-contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mapa-contenido p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.mapa-contenido span {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* =========================================
+   ADAPTACIÓN RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+    /* Las columnas pasan a apilarse */
+    .grilla-contacto {
+        grid-template-columns: 1fr;
+    }
+
+    .cabecera-contacto h1 {
+        font-size: 2.5rem;
+    }
+}

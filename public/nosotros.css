@@ -1,20 +1,16 @@
 /* =========================================
-    PAGINA LEGAL (TERMINOS Y CONDICIONES)
-   ========================================= */
+   PÁGINA: SOBRE NOSOTROS
+========================================= */
 
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
-    }
 
-    body {
-    background-color: #000000; 
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #000000;
+    color: #ffffff;
 }
 
+        /*-------$$$ HEADER PRINCIPAL $$$-------*/
 
-/*-------$$$ HEADER PRINCIPAL $$$-------*/
 header {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 15px 5%;
@@ -174,102 +170,178 @@ header {
 .btn-hamburguesa {
     display: none; 
 }
-        /*----------fin del header ----------*/
+/*----------fin del header ----------*/
 
 
 
-/* terminos y condiciones */
+.seccion-nosotros {
+    padding: 20px 5%;
+    background-color: #0a0a0a; /* Fondo oscuro base */
+    min-height: 100vh;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
 
-.seccion-legal {
-    padding: 30px 5%; 
-    background-color: #000000; /* Tu fondo negro base */
-    min-height: 80vh;
+}
+
+.contenedor-nosotros-wide {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- TÍTULO PRINCIPAL --- */
+.cabecera-nosotros {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.cabecera-nosotros h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.texto-naranja {
+    color: #f59e0b;
+}
+
+.cabecera-nosotros p {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+}
+
+/* --- BLOQUE 1: HISTORIA Y STATS --- */
+.bloque-historia-stats {
     display: flex;
-    justify-content: center; 
+    gap: 50px;
+    margin-bottom: 80px;
+    align-items: center;
 }
 
-/* El documento en si, restringimos el ancho para que sea facil de leer */
-.contenedor-legal {
-    max-width: 850px;
-    width: 100%;
-    background-color: #18181b; /* El mismo fondo de tus tarjetas de productos */
-    padding: 60px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Tu borde sutil */
+.historia-texto {
+    flex: 1; /* Ocupa la mitad */
 }
 
-.cabecera-legal {
-    margin-bottom: 50px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 30px;
+.historia-texto h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
 }
 
-.cabecera-legal h1 {
+.historia-texto p {
+    color: #a0a0a0;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+/* La grilla de números 2x2 */
+.grilla-estadisticas {
+    flex: 1; /* Ocupa la otra mitad */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.stat-caja {
+    background-color: #161616;
+    border: 1px solid #252525;
+    padding: 30px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-numero {
+    color: #f59e0b;
     font-size: 2.5rem;
     font-weight: 900;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: #ffffff;
+    margin-bottom: 5px;
 }
 
-.cabecera-legal p {
-    color: #a0a0a0; /* Tu gris de textos secundarios */
+.stat-label {
+    color: #a0a0a0;
     font-size: 0.9rem;
 }
 
-/* Bloques de parrafos */
-.bloque-texto {
+/* --- BLOQUE 2: VALORES --- */
+.bloque-valores {
+    margin-bottom: 50px;
+    background-color: #101012;
+    padding: 20px 5%;
+    border-radius: 10px;
+}
+
+.titulo-centrado {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 800;
     margin-bottom: 40px;
 }
 
-.bloque-texto h2 {
-    color: #ff9900; /* Tu naranja principal */
-    font-size: 1.3rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+.grilla-4-valores {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
-.bloque-texto p {
-    color: #cccccc; /* Gris intermedio para facilitar la lectura */
-    font-size: 1.05rem;
+.valor-caja {
+    background-color: #161616;
+    border: 1px solid #252525;
+    padding: 40px 25px;
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.valor-caja:hover {
+    transform: translateY(-5px);
+    border-color: #444;
+}
+
+.valor-caja i {
+    color: #f59e0b;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.valor-caja h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.valor-caja p {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* --- BLOQUE 3: MISIÓN Y VISIÓN --- */
+.bloque-mision-vision {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.caja-mision {
+    background-color: #1c140a; /* Mismo fondo de tarjetas */
+    border: 1px solid #f59e0b20; /* Borde muy sutil naranja */
+    padding: 40px;
+    border-radius: 12px;
+}
+
+.caja-mision h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.caja-mision p {
+    color: #a0a0a0;
     line-height: 1.7;
-    margin-bottom: 15px;
-}
-
-/* Lista con viñetas personalizadas */
-.bloque-texto ul {
-    list-style: none;
-    padding-left: 10px;
-}
-
-.bloque-texto li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 12px;
-    color: #cccccc;
-    line-height: 1.6;
-}
-
-/* La flechita naranja antes de cada item de la lista */
-.bloque-texto li::before {
-    content: "→";
-    position: absolute;
-    left: 0;
-    color: #ff9900;
-    font-weight: 900;
-}
-
-.bloque-texto strong {
-    color: #ffffff; 
-    font-weight: 700;
 }
 
 
-
-
-/* ------------$$$ Footer principio $$$--------- */
-
+        /* ------------$$$ Footer principio $$$--------- */
 .footer-principal {
     background-color: #050505; 
     border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -310,7 +382,6 @@ header {
     color: #ffffff;
     margin-bottom: 15px;
 }
-
 
 .logo-footer-caja {
     width: 40px;
@@ -427,19 +498,17 @@ header {
     color: #ffffff;
 }
 
-        /*------------$$$ Footer fin $$$--------- */
+
+
 
 
 /* =========================================
-    ADAPTACION PARA CELULARES Y TABLETS (RESPONSIVE)
+   ADAPTACIÓN RESPONSIVE (MÓVILES Y TABLETS)
 ========================================= */
-
 
 @media (max-width: 900px) {
 
-
-
-  /* 1. Ocultamos los enlaces de texto */
+     /* 1. Ocultamos los enlaces de texto */
     .navLinks {
         display: none;
     }
@@ -514,16 +583,38 @@ header {
     }
 
 
-    .contenedor-legal {
-        padding: 30px 20px;
+    /* La historia y los cuadros pasan a apilarse uno arriba del otro */
+    .bloque-historia-stats {
+        flex-direction: column;
     }
     
-    .cabecera-legal h1 {
-        font-size: 1.8rem;
+    /* Los 4 valores pasan a ser 2 columnas */
+    .grilla-4-valores {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* En celulares chicos, todo es de 1 sola columna */
+    .cabecera-nosotros h1 {
+        font-size: 2.5rem;
+    }
+
+    .grilla-estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grilla-4-valores {
+        grid-template-columns: 1fr;
+    }
+
+    .bloque-mision-vision {
+        grid-template-columns: 1fr;
     }
 
 
-/* --- FOOTER --- */
+
+        /* --- FOOTER --- */
     .footer-top {
         grid-template-columns: 1fr; /* 1 sola columna */
         text-align: left; /* Centramos todo */
@@ -549,5 +640,31 @@ header {
         font-size: 1.1rem;
     }
 
+
+    /* --- ASISTENTE IA --- */
+    .chat-asistente-contenedor {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .text-asistente-pop {
+        display: none; 
+    }
+    
+    .btn-asistente-ia {
+        width: 80px;
+        height: 80px;
+    }
+
+    .btn-asistente-ia svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .chat-asistente-contenedor:hover .btn-asistente-ia svg {
+    transform: scale(1.1); /* Crece un poquito el globo */
+    width: 30px;
+    height: 30px;
+}
 
 }

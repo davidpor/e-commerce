@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo - ObraMaestra</title>
+
+    <title>ObraMaestra | Distribuidor Mayorista</title>
+
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="index.css"> 
-    <link rel="stylesheet" href="terminos.css">
-    </head>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="catalogo.css">
+    <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="nosotros.css">
+    <link rel="stylesheet" href="contacto.css">
+    
+</head>
+
 
 <body>
 
-<header>
+    <header>
         <div class="tipologo">
             <div class="caja-naranja">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-hat-icon lucide-hard-hat"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg>
@@ -50,48 +60,90 @@
 
         </div>
     </header>
-<main class="seccion-legal">
-    <div class="contenedor-legal">
-        
-        <div class="cabecera-legal">
-            <h1>Términos y Condiciones</h1>
-            <p>ObraMaestra Mayorista S.A. | Vigente desde Mayo 2026</p>
+
+    <!-- ---------- SEPARACION DEL HEADER ---------- -->
+
+
+<main class="seccion-nosotros">
+    <div class="contenedor-nosotros-wide">
+
+        <div class="cabecera-nosotros">
+            <h1>Sobre <span class="texto-naranja">Nosotros</span></h1>
+            <p>Tu socio de confianza en materiales de construcción desde hace más de 20 años</p>
         </div>
 
-        <div class="cuerpo-legal">
-            <div class="bloque-texto">
-                <h2>1. Identificación y Alcance</h2>
-                <p>El presente documento establece los términos legales para el uso de la plataforma de <strong>ObraMaestra</strong>. Al utilizar este sitio, usted declara ser mayor de edad y contar con la capacidad legal para representar a una entidad comercial o profesional del sector de la construcción.</p>
+        <div class="bloque-historia-stats">
+            
+            <div class="historia-texto">
+                <h2>Nuestra Historia</h2>
+                <p>Fundada en 2003, OBRAMAESTRA nació con la visión de proporcionar materiales de construcción de la más alta calidad a profesionales y particulares en toda la región.</p>
+                <p>Con más de dos décadas de experiencia, nos hemos convertido en referentes del sector, ofreciendo un catálogo completo de productos y un servicio al cliente excepcional que nos diferencia.</p>
             </div>
 
-            <div class="bloque-texto">
-                <h2>2. Registro Mayorista (B2B)</h2>
-                <p>Esta plataforma es de uso exclusivo para clientes mayoristas. El acceso total a precios y stock está sujeto a la validación de datos comerciales:</p>
-                <ul>
-                    <li>Constancia de CUIT activa y verificable.</li>
-                    <li>Perfil comercial vinculado al sector de obras o ferretería.</li>
-                    <li>Uso de credenciales de acceso personales e intransferibles.</li>
-                </ul>
+            <div class="grilla-estadisticas">
+                <div class="stat-caja">
+                    <span class="stat-numero">20+</span>
+                    <span class="stat-label">Años de experiencia</span>
+                </div>
+                <div class="stat-caja">
+                    <span class="stat-numero">5000+</span>
+                    <span class="stat-label">Clientes satisfechos</span>
+                </div>
+                <div class="stat-caja">
+                    <span class="stat-numero">500+</span>
+                    <span class="stat-label">Productos disponibles</span>
+                </div>
+                <div class="stat-caja">
+                    <span class="stat-numero">24/7</span>
+                    <span class="stat-label">Atención al cliente</span>
+                </div>
             </div>
 
-            <div class="bloque-texto">
-                <h2>3. Condiciones de Facturación</h2>
-                <p>Todas las transacciones se realizan bajo las normativas fiscales vigentes. Emitimos Factura tipo A y B. Los precios publicados no incluyen IVA a menos que se especifique lo contrario.</p>
-            </div>
+        </div>
 
-            <div class="bloque-texto">
-                <h2>4. Logística y Recepción en Obra</h2>
-                <p>ObraMaestra garantiza el despacho de mercadería en los plazos acordados. El cliente es responsable de garantizar personal apto para la descarga en el punto de destino. Cualquier daño detectado en el material debe ser notificado en el remito al momento de la recepción.</p>
+        <div class="bloque-valores">
+            <h2 class="titulo-centrado">Nuestros Valores</h2>
+            
+            <div class="grilla-4-valores">
+                <div class="valor-caja">
+                    <i class="fa-solid fa-building"></i> <h3>Calidad</h3>
+                    <p>Solo trabajamos con las mejores marcas y productos certificados</p>
+                </div>
+                <div class="valor-caja">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h3>Compromiso</h3>
+                    <p>Dedicados a cumplir con los plazos y expectativas de nuestros clientes</p>
+                </div>
+                <div class="valor-caja">
+                    <i class="fa-solid fa-medal"></i>
+                    <h3>Excelencia</h3>
+                    <p>Buscamos la perfección en cada proyecto y servicio que ofrecemos</p>
+                </div>
+                <div class="valor-caja">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Confianza</h3>
+                    <p>Construimos relaciones duraderas basadas en la transparencia</p>
+                </div>
             </div>
+        </div>
 
-            <div class="bloque-texto">
-                <h2>5. Limitación de Responsabilidad</h2>
-                <p>La empresa no se responsabiliza por demoras en los tiempos de obra derivados de faltantes de stock por parte de fabricantes externos o inconvenientes en el transporte ajenos a nuestra flota propia.</p>
+        <div class="bloque-mision-vision">
+            <div class="caja-mision">
+                <h3>Nuestra Misión</h3>
+                <p>Proporcionar a nuestros clientes los mejores materiales de construcción con un servicio excepcional, contribuyendo al desarrollo de proyectos exitosos que transformen espacios y mejoren la calidad de vida.</p>
+            </div>
+            <div class="caja-mision">
+                <h3>Nuestra Visión</h3>
+                <p>Ser la empresa líder en distribución de materiales de construcción, reconocida por nuestra innovación, calidad y compromiso con la sostenibilidad y el desarrollo del sector.</p>
             </div>
         </div>
 
     </div>
 </main>
+
+
+<!-- ---------- SEPARACION DEL FOOTER ---------- -->
+
     <footer class="footer-principal">
         
         <div class="footer-top">
@@ -132,7 +184,7 @@
             <p>&copy; 2026 ObraMaestra Mayorista S.A. Todos los derechos reservados.</p>
             <div class="enlaces-legales">
                 <a href="terminos.html">Términos y Condiciones</a>
-                <a href="privacidad.html">Privacidad</a>
+                <a href="#">Privacidad</a>
             </div>
         </div>
 

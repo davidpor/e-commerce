@@ -3,7 +3,7 @@
    ========================================= */
 
 .seccion-cotizacion {
-    padding: 130px 20px 60px; /* Mismo margen superior que el catálogo para el header */
+    padding: 20px 5%; /* Mismo margen superior que el catálogo para el header */
     background-color: #0a0a0a;
     min-height: 80vh; /* Asegura que la página sea alta aunque esté vacía */
     color: #fff;
@@ -49,6 +49,11 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
+}
+
+.icono-vacio svg {
+    width: 60px;
+    height: 60px;
 }
 
 .icono-vacio i {

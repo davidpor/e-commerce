@@ -9,9 +9,49 @@
     <link rel="stylesheet" href="carrito.css">
     </head>
 
-<body>
 
-<header class="cabecera"> </header>
+<body>
+    <header>
+        <div class="tipologo">
+            <div class="caja-naranja">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-hat-icon lucide-hard-hat"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg>
+            </div>
+            <span>OBRAMAESTRA</span>
+        </div>
+
+        <nav class="nav-principal">
+            <ul class="navLinks">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="catalogo.html">CATÁLOGO</a></li>    <!-- catalogo.php" -->
+                <li><a href="nosotros.html">NOSOTROS</a></li>  <!-- index.php#sectores" -->
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-point">
+
+            <a href="carrito.html">
+            <div class="caja-shopping">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
+        </div>
+            </a>
+
+            <button class="btn-login" onclick="window.location.href='registro.html'">
+                <div class="caja-icon-login">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                </div> <span class="texto-login">Ingresar</span>
+            </button>
+
+
+            <button class="btn-hamburguesa" id="btn-hamburguesa">
+                <svg class="icono-barras" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/> </svg>
+                <svg class="icono-x" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- ---------- SEPARACION DEL HEADER ---------- -->
 
 <main class="seccion-cotizacion">
     <div class="contenedor-cotizacion">
@@ -23,14 +63,14 @@
         <div class="estado-vacio">
             
             <div class="icono-vacio">
-                <i class="fa-solid fa-bag-shopping"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-basket-icon lucide-shopping-basket"><path d="m15 11-1 9"/><path d="m19 11-4-7"/><path d="M2 11h20"/><path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8a2 2 0 0 0 2-1.6l1.7-7.4"/><path d="M4.5 15.5h15"/><path d="m5 11 4-7"/><path d="m9 11 1 9"/></svg>
             </div>
             
             <h2>Tu pedido está vacío</h2>
             <p>Explora nuestro catálogo para armar tu cotización mayorista.</p>
             
             <a href="catalogo.html" class="btn-ver-catalogo">
-                Ver Catálogo <i class="fa-solid fa-arrow-right"></i>
+                Ver Catálogo <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag-icon lucide-shopping-bag"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></svg>
             </a>
             
         </div>
@@ -38,7 +78,15 @@
     </div>
 </main>
 
-<footer class="pie-pagina"> </footer>
+
+<!-- ---------- SEPARACION DEL FOOTER ---------- -->
+
+    <footer class="footer-principal">
+        
+    </footer>
+
+<script src="menu.js"></script>
+
 
 </body>
 
