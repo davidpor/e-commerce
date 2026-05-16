@@ -97,6 +97,7 @@ app.use('/api/pricing', require('./modules/pricing/pricing.router'));
 app.use('/api/quotes', require('./modules/quotes/quotes.router'));
 app.use('/api/orders', require('./modules/orders/orders.router'));
 app.use('/api/payments', require('./modules/payments/payments.router'));
+app.use('/api/companies', require('./modules/users/companies.router'));
 
 // ── 404 ────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
