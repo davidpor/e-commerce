@@ -354,38 +354,13 @@ header {
     z-index: 5;
 }
 
-.fav-heart {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: rgba(0,0,0,0.6);
-    color: #fff;
-    border: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s;
-    font-size: 1.1rem;
-    z-index: 5;
-}
 
-.fav-heart:hover {
-    background-color: #f59e0b;
-    color: #000;
-}
 
-/* --- EL BOTÓN FLOTANTE CON ANIMACIÓN HOVER --- */
+/* --- EL BOTÓN ESTÁTICO --- */
 .btn-agregar-pedido {
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    width: calc(100% - 30px);
-    background-color: #f59e0b;
+    width: 100%; /* Ocupa todo el ancho de su caja */
+    margin-top: 20px; /* Lo separa de la lista de SKU y Stock */
+    background-color: #f59e0b; /* Naranja original */
     color: #000;
     border: none;
     padding: 12px;
@@ -398,22 +373,16 @@ header {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    z-index: 10;
     
-    /* Animación oculta por defecto */
-    opacity: 0;
-    transform: translateY(20px);
+    /* Preparamos la transición suave para el hover */
     transition: all 0.3s ease;
 }
 
-/* Cuando el mouse entra a la tarjeta, el botón aparece */
-.tarjeta-v2:hover .btn-agregar-pedido {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+/* --- EL EFECTO HOVER (Brillo y Sombra) --- */
 .btn-agregar-pedido:hover {
-    background-color: #fbbf24;
+    background-color: #fbbf24; /* Un naranja más clarito/brillante */
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5); /* Sombra difuminada del mismo color naranja */
+    transform: translateY(-2px); /* Efecto pro: el botón "sube" un poquitito al tocarlo */
 }
 
 /* --- LA CAJA DE INFORMACIÓN (Compactada) --- */

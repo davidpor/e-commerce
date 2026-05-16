@@ -465,24 +465,8 @@ header {
     border-radius: 20px;
 }
 
-.btn-favorito {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #1e2025;
-    color: #ffffff;
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: 0.3s;
-}
 
-.btn-favorito:hover {
-    background-color: #ff9900;
-    color: #000000;
-}
+
 
 /* --- Botón Naranja Inferior (Aparece en Hover) --- */
 .btn-agregar-hover {

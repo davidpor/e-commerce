@@ -27,6 +27,13 @@ mas algunos arreglos o pulidos que se hicieron de nuevo en el front.
 
 
  
+15/05/2026 :  00:22 -
+
+arregle cosas del front detalles de iconos agregue paginas como la de terminos y condiciones sencillas - privacidad - modifique el catalogo para que se vea mas estatico, el diseño responsive deberia estar casi por completo solo faltando tres paginas mas: 
+
+ -la del chekout osea las formas de pago
+ -la de usuario
+ -detalles del pedido 
 
 
 
