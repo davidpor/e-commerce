@@ -37,23 +37,23 @@ const crearPreferencia = async (orderId, userId) => {
   // Armamos los ítems de la preferencia
   // MP requiere que cada ítem tenga título, cantidad y precio unitario
   const items = pedido.items.map(item => ({
-    id:          item.product_id.toString(),
-    title:       item.nombre_producto,
+    id: item.product_id.toString(),
+    title: item.nombre_producto,
     description: `SKU: ${item.sku_producto}`,
-    quantity:    item.cantidad,
-    unit_price:  parseFloat(item.precio_unitario),
+    quantity: item.cantidad,
+    unit_price: parseFloat(item.precio_unitario),
     currency_id: 'ARS',
   }));
 
   // Si hay descuento extra, lo agregamos como ítem negativo
   if (parseFloat(pedido.descuento_extra) > 0) {
-    const montoDescuento = parseFloat(pedido.subtotal) * 
+    const montoDescuento = parseFloat(pedido.subtotal) *
       (parseFloat(pedido.descuento_extra) / 100);
     items.push({
-      id:          'descuento',
-      title:       `Descuento ${pedido.descuento_extra}%`,
-      quantity:    1,
-      unit_price:  -Math.round(montoDescuento * 100) / 100,
+      id: 'descuento',
+      title: `Descuento ${pedido.descuento_extra}%`,
+      quantity: 1,
+      unit_price: -Math.round(montoDescuento * 100) / 100,
       currency_id: 'ARS',
     });
   }
@@ -70,15 +70,15 @@ const crearPreferencia = async (orderId, userId) => {
 
       // Datos del comprador (mejora la experiencia en el checkout)
       payer: {
-        name:  pedido.empresa?.razon_social || '',
+        name: pedido.empresa?.razon_social || '',
         email: pedido.empresa?.email_contacto || '',
       },
 
       // URLs de redirección después del pago
       back_urls: {
-        success: `${process.env.FRONTEND_URL}/pedidos/${orderId}/pago-exitoso`,
-        failure: `${process.env.FRONTEND_URL}/pedidos/${orderId}/pago-fallido`,
-        pending: `${process.env.FRONTEND_URL}/pedidos/${orderId}/pago-pendiente`,
+        success: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-exitoso`,
+        failure: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-fallido`,
+        pending: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-pendiente`,
       },
 
       // MP redirige automáticamente al success/failure
@@ -94,8 +94,8 @@ const crearPreferencia = async (orderId, userId) => {
 
       // Metadata adicional para debugging
       metadata: {
-        order_id:   orderId,
-        order_num:  pedido.numero,
+        order_id: orderId,
+        order_num: pedido.numero,
         company_id: pedido.company_id,
       },
 
@@ -112,10 +112,10 @@ const crearPreferencia = async (orderId, userId) => {
 
   return {
     preference_id: response.id,
-    init_point:    response.init_point,      // URL de pago para producción
-    sandbox_url:   response.sandbox_init_point, // URL de pago para pruebas
+    init_point: response.init_point,      // URL de pago para producción
+    sandbox_url: response.sandbox_init_point, // URL de pago para pruebas
     pedido_numero: pedido.numero,
-    total:         pedido.total,
+    total: pedido.total,
   };
 };
 
@@ -133,7 +133,7 @@ const procesarWebhook = async (body, headers) => {
 
   // Obtenemos los detalles completos del pago desde la API de MP
   const payment = new Payment(client);
-  const pagoMP  = await payment.get({ id: data.id });
+  const pagoMP = await payment.get({ id: data.id });
 
   const {
     status,            // approved, rejected, pending, in_process, refunded
@@ -143,7 +143,7 @@ const procesarWebhook = async (body, headers) => {
   } = pagoMP;
 
   const orderId = parseInt(external_reference);
-  const pedido  = await Order.findByPk(orderId);
+  const pedido = await Order.findByPk(orderId);
 
   if (!pedido) {
     console.error(`[MP Webhook] Pedido ${orderId} no encontrado`);
