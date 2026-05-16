@@ -16,9 +16,9 @@ const Product = sequelize.define('Product', {
     type: DataTypes.STRING(50),
     allowNull: false,
     unique: true,
-    set(value) { 
+    set(value) {
       // Los SKUs siempre en mayúsculas para evitar duplicados
-      this.setDataValue('sku', value.trim().toUpperCase()); 
+      this.setDataValue('sku', value.trim().toUpperCase());
     }
   },
 
@@ -139,6 +139,12 @@ const Product = sequelize.define('Product', {
   destacado: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
+  },
+
+  imagen_url: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+    defaultValue: null,
   },
 
   // Clave foránea a la categoría
