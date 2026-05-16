@@ -5,6 +5,7 @@ const Company = require('../users/company.model');
 const redis = require('../../config/redis');
 const { errors } = require('../../utils/errors');
 const emailService = require('../notifications/email.service');
+const n8n = require('../notifications/n8n.service');
 
 // ─── Función privada: genera los dos tokens ───────────────────────────────────
 const generarTokens = (payload) => {
@@ -29,16 +30,16 @@ const generarTokens = (payload) => {
 const registrar = async ({ empresa, usuario }) => {
 
   // Verificamos que el CUIT no esté ya registrado
-  const empresaExistente = await Company.findOne({ 
-    where: { cuit: empresa.cuit } 
+  const empresaExistente = await Company.findOne({
+    where: { cuit: empresa.cuit }
   });
   if (empresaExistente) {
     throw errors.conflict('Ya existe una empresa registrada con ese CUIT');
   }
 
   // Verificamos que el email no esté en uso
-  const emailExistente = await User.findOne({ 
-    where: { email: usuario.email } 
+  const emailExistente = await User.findOne({
+    where: { email: usuario.email }
   });
   if (emailExistente) {
     throw errors.conflict('Ya existe una cuenta con ese email');
@@ -46,35 +47,36 @@ const registrar = async ({ empresa, usuario }) => {
 
   // Creamos la empresa primero
   const nuevaEmpresa = await Company.create({
-    razon_social:    empresa.razon_social,
-    cuit:            empresa.cuit,
-    condicion_iva:   empresa.condicion_iva || 'responsable_inscripto',
-    telefono:        empresa.telefono,
-    email_contacto:  empresa.email_contacto,
-    direccion:       empresa.direccion,
-    ciudad:          empresa.ciudad,
-    provincia:       empresa.provincia,
+    razon_social: empresa.razon_social,
+    cuit: empresa.cuit,
+    condicion_iva: empresa.condicion_iva || 'responsable_inscripto',
+    telefono: empresa.telefono,
+    email_contacto: empresa.email_contacto,
+    direccion: empresa.direccion,
+    ciudad: empresa.ciudad,
+    provincia: empresa.provincia,
     activa: false, // el admin del sistema debe aprobarla
   });
 
   // Creamos el usuario vinculado a esa empresa
   // El password_hash se encripta automáticamente en el hook beforeCreate
   const nuevoUsuario = await User.create({
-    nombre:        usuario.nombre,
-    apellido:      usuario.apellido,
-    email:         usuario.email,
+    nombre: usuario.nombre,
+    apellido: usuario.apellido,
+    email: usuario.email,
     password_hash: usuario.password,  // el hook lo encripta antes de guardar
-    telefono:      usuario.telefono,
-    rol:           'cliente',
-    company_id:    nuevaEmpresa.id,
+    telefono: usuario.telefono,
+    rol: 'cliente',
+    company_id: nuevaEmpresa.id,
   });
-  
-await emailService.enviarBienvenida({
-  email:       usuario.email,
-  nombre:      usuario.nombre,
-  razonSocial: nuevaEmpresa.razon_social,
-});
 
+  await emailService.enviarBienvenida({
+    email: usuario.email,
+    nombre: usuario.nombre,
+    razonSocial: nuevaEmpresa.razon_social,
+  });
+
+  await n8n.notificarRegistro(nuevaEmpresa, nuevoUsuario);
   return {
     mensaje: 'Registro exitoso. Tu cuenta será activada en las próximas 24 horas.',
     empresa: nuevaEmpresa,
@@ -118,8 +120,8 @@ const login = async ({ email, password }) => {
 
   // Generamos los tokens con la info del usuario como payload
   const payload = {
-    id:         usuario.id,
-    rol:        usuario.rol,
+    id: usuario.id,
+    rol: usuario.rol,
     company_id: usuario.company_id,
   };
   const { accessToken, refreshToken } = generarTokens(payload);

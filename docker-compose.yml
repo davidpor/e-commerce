@@ -11,9 +11,9 @@ services:
       MYSQL_USER: ferreteria_user
       MYSQL_PASSWORD: ferreteria_pass
     ports:
-      - "3306:3306"          # accesible desde tu PC en localhost:3306
+      - "3306:3306" # accesible desde tu PC en localhost:3306
     volumes:
-      - db_data:/var/lib/mysql   # los datos persisten aunque pares el contenedor
+      - db_data:/var/lib/mysql # los datos persisten aunque pares el contenedor
   adminer:
     image: adminer:latest
     container_name: ferreteria_adminer
@@ -21,7 +21,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - db  
+      - db
   redis:
     image: redis:7-alpine
     container_name: ferreteria_redis
@@ -30,7 +30,25 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: ferreteria_n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      - GENERIC_TIMEZONE=America/Argentina/Mendoza
+    volumes:
+      - n8n_data:/home/node/.n8n
 
 volumes:
   db_data:
   redis_data:
+  n8n_data:
