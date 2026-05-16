@@ -1,63 +1,54 @@
-// 1. REEMPLAZÁ ESTA URL por la que encuentres en el código de Node.js
-const URL_API = 'http://localhost:3000/api/products'; 
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. Buscamos todos los botones de "Agregar al carrito" en tu HTML
+    const botonesAgregar = document.querySelectorAll('.btn-agregar-pedido');
 
-const contenedor = document.querySelector('.grilla-4cols');
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener('click', (evento) => {
+            evento.preventDefault(); // Evita que la página salte
+            
+            // 2. Buscamos la tarjeta "padre" del botón que tocaste
+            const tarjeta = boton.closest('.tarjeta-v2');
+            
+            // 3. Extraemos los textos y la imagen directamente de tu diseño HTML
+            const nombre = tarjeta.querySelector('h3').innerText;
+            const imagen = tarjeta.querySelector('img').src;
+            
+            // Limpiamos el precio (le sacamos el símbolo $ y los puntos para poder sumar matemáticamente)
+            let precioTexto = tarjeta.querySelector('.price').innerText;
+            let precioNum = parseInt(precioTexto.replace('$', '').replace('.', ''));
+            
+            // Generamos un código SKU falso basado en el nombre para el MVP
+            const sku = "SKU-" + nombre.substring(0,4).toUpperCase();
 
-async function cargarProductos() {
-    try {
-        const respuesta = await fetch(URL_API);
-        const productos = await respuesta.json();
-        
-        contenedor.innerHTML = ''; // Limpiamos el HTML vacío
-
-        productos.forEach(prod => {
+            // 4. LA LÓGICA RECUPERADA: Leemos la memoria y agregamos el producto
+            let carrito = JSON.parse(localStorage.getItem('carritoObraMaestra')) || [];
             
-            // Como vimos que NO hay columna de imagen en la BD, usamos un placeholder si viene vacía
-            const imagenSegura = prod.imagen ? prod.imagen : 'https://via.placeholder.com/300x300/222222/ff9900?text=Sin+Imagen';
+            let index = carrito.findIndex(item => item.sku === sku);
+            if (index !== -1) {
+                carrito[index].cantidad += 1; // Si ya estaba, suma 1
+            } else {
+                carrito.push({ sku: sku, nombre: nombre, precio: precioNum, imagen: imagen, cantidad: 1 });
+            }
             
-            // Formateamos el precio para que se vea lindo (ej: 1.500,00)
-            const precioFormateado = Number(prod.precio_lista).toLocaleString('es-AR');
+            // Guardamos todo de vuelta en la memoria
+            localStorage.setItem('carritoObraMaestra', JSON.stringify(carrito));
             
-            // Si la descripción es nula en la BD, le ponemos un texto por defecto
-            const descripcionSegura = prod.descripcion ? prod.descripcion : 'Sin descripción disponible.';
-            const marcaSegura = prod.marca ? prod.marca : 'Genérico';
-
-            const tarjetaHTML = `
-                <div class="tarjeta-v2">
-                    <div class="t-img-box">
-                        <span class="category-pildora">${marcaSegura}</span>
-                        <img src="${imagenSegura}" alt="${prod.nombre}">
-                        <button class="fav-heart"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    
-                    <div class="t-content-box">
-                        <div class="t-head">
-                            <h3>${prod.nombre}</h3>
-                            <div class="price">$${precioFormateado}</div>
-                        </div>
-                        
-                        <p class="t-desc">${descripcionSegura}</p>
-                        
-                        <ul class="t-specs">
-                            <li><span class="dot-naranja"></span> SKU: ${prod.sku}</li>
-                            <li><span class="dot-naranja"></span> Stock: ${prod.stock_actual}</li>
-                        </ul>
-                        
-                        <button class="btn-agregar-pedido">Agregar al carrito</button>
-                    </div>
-                </div>
-            `;
+            // 5. Adiós al alert, hola al contador dinámico:
+            if (typeof window.actualizarContadorCarrito === 'function') {
+                window.actualizarContadorCarrito();
+            }
             
-            contenedor.innerHTML += tarjetaHTML;
+            // 6. (Opcional visual) Cambiamos el texto del botón por 1 segundo para dar feedback
+            const textoOriginal = boton.innerHTML;
+            boton.innerHTML = '<i class="fa-solid fa-check"></i> ¡Agregado!';
+            boton.style.backgroundColor = '#eec072'; /* Verde éxito */
+            
+            setTimeout(() => {
+                boton.innerHTML = textoOriginal;
+                boton.style.backgroundColor = ''; /* Vuelve al naranja original */
+            }, 1000);
+            
         });
-
-    } catch (error) {
-        console.error("Error conectando a la API:", error);
-        contenedor.innerHTML = `<p style="color:red; grid-column: 1/-1; text-align:center;">
-            No se pudo conectar con el servidor. ¿Asegurate de que Node.js esté corriendo?
-        </p>`;
-    }
-}
-
-// Ejecutamos la función
-cargarProductos();
+    });
+});

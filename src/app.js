@@ -45,6 +45,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Servir archivos estáticos (HTML, CSS, JS, Imágenes) desde la carpeta public
+      // esto le agregue para ver el html <------------
 app.use(express.static(path.join(__dirname, '../public')));
 
 // ── Documentación Swagger ──────────────────────────────────────────────────
@@ -66,8 +67,7 @@ app.get('/health', (req, res) => {
   });
 });
 
-/*
-
+/*  le comente esta parte para pruebas 
 app.get('/', (req, res) => {
   res.json({
     nombre:        'Ferretería B2B API',
@@ -75,7 +75,6 @@ app.get('/', (req, res) => {
     documentacion: '/api/docs',
   });
 });
-
 */
 
 // ── Módulos de la API ──────────────────────────────────────────────────────

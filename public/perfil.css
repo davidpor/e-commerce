@@ -1,0 +1,344 @@
+/* ==========================================================================
+   PÁGINA DE PERFIL DEL CLIENTE (BENTO GRID)
+   ========================================================================== */
+
+        /*-------$$$ HEADER PRINCIPAL $$$-------*/
+
+header {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap:40px;
+
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+}
+
+/*--- LOGO --- */
+
+.tipologo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-right: 20px;
+}
+
+.caja-naranja {
+    background-color: #f59e0b;
+
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+}
+.caja-naranja svg{
+    width: 28px;
+    height: auto;
+    color: black;
+    transition: transform 0.3s;
+}
+
+.caja-naranja:hover svg {
+    color: black;
+    transform: scale(1.1);
+}
+
+
+
+/*----- navegacion ----*/
+
+.navLinks {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #a1a1a1;
+    font-weight: 700;
+}
+
+.navLinks a:hover {
+    color: #f59e0b;
+}
+
+/*----- caja de login ----*/
+
+.user-point {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.btn-login {
+    background: transparent;
+    border: 1px solid #555;
+    color: #ffffff;
+
+    padding: 6px 20px 6px 6px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    display: flex;
+    align-items: center;
+    gap:8px;
+}
+
+.btn-login:hover {
+    border-color: #ffffff;
+    background-color: #ffffff;
+    color: #0a0a0a;
+}
+
+
+.caja-icon-login {
+    background-color: transparent; 
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.caja-icon-login svg {
+    width: 20px;
+}
+
+
+/* --- Boton Carrito --- */
+
+.user-point a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.caja-shopping {
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+
+/* --- CONTADOR DEL CARRITO --- */
+.badge-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #f59e0b; /* Naranja ObraMaestra */
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000; /* Borde negro para que resalte sobre el ícono */
+    display: none; /* Oculto por defecto si está en 0 */
+}
+
+.caja-shopping svg {
+    width: 20px;
+    transition: transform 0.3s;
+}
+
+.caja-shopping:hover {
+    color: #f59e0b;
+}
+
+.caja-shopping:hover svg {
+    transform: scale(1.1);
+}
+
+/* --- Botón Hamburguesa (Oculto en PC por defecto) --- */
+.btn-hamburguesa {
+    display: none; 
+}
+/*----------fin del header ----------*/
+
+
+.seccion-perfil {
+    background-color: #000000;
+    padding: 50px 5%;
+    min-height: 85vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.cabecera-perfil {
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+}
+
+.cabecera-perfil h1 {
+    color: #f59e0b;
+    font-size: 2.2rem;
+    font-weight: 900;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #ff4444;
+    color: #000;
+}
+
+/* --- GRILLA BENTO --- */
+.bento-grid-perfil {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    background-color: #111111;
+    border: 1px solid #222222;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.bento-item h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bento-item h3 i { color: #f59e0b; }
+
+.info-bento-block p {
+    color: #cccccc;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.info-bento-block strong { color: #ffffff; }
+
+/* Stats */
+.stat-box {
+    background-color: #161616;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #222222;
+    display: flex;
+    flex-direction: column;
+}
+
+.num-stat { font-size: 2rem; font-weight: 900; color: #f59e0b; }
+.txt-stat { font-size: 0.85rem; color: #888; font-weight: 600; margin-top: 5px; }
+
+/* Seguimiento (Ocupa todo el ancho abajo) */
+.seguimiento-envio {
+    grid-column: span 2; 
+    border-left: 4px solid #f59e0b; 
+}
+
+.head-seguimiento {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.num-operacion {
+    background-color: #222;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.pedido-recortado {
+    background-color: #161616;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.txt-recortado { color: #aaa; margin: 0; }
+.precio-pedido-resumen { color: #fff; font-weight: 700; }
+
+/* Punto de estado */
+.linea-estado-actual {
+    background-color: #161616;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed #333;
+}
+
+.contenedor-punto-estado {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.punto-dinamico {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #3a8ee6; 
+    box-shadow: 0 0 10px #3a8ee6;
+}
+
+.txt-estado-actual { color: #fff; font-size: 1.05rem; }
+.txt-estado-actual strong { color: #f59e0b; }
+.aviso-logistica { color: #666; font-size: 0.85rem; margin: 0; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bento-grid-perfil { grid-template-columns: 1fr; }
+    .seguimiento-envio { grid-column: span 1; }
+    .pedido-recortado { flex-direction: column; gap: 10px; }
+}

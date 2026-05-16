@@ -6,7 +6,7 @@
     <title>Carrito - ObraMaestra</title>
     
     <link rel="stylesheet" href="index.css"> 
-    <link rel="stylesheet" href="carrito.css">
+    <link rel="stylesheet" href="checkout.css">
     </head>
 
 
@@ -54,35 +54,83 @@
 
     <!-- ---------- SEPARACION DEL HEADER ---------- -->
 
-<main class="seccion-cotizacion">
-    <div class="contenedor-cotizacion">
+<main class="seccion-checkout">
+    <div class="contenedor-checkout">
         
-        <div class="cabecera-cotizacion">
-            <h1>TU COTIZACIÓN</h1>
+        <div class="checkout-datos">
+            <h2>Finalizar Pedido</h2>
+            
+            <section class="checkout-card">
+                <h3><i class="fa-solid fa-file-invoice"></i> Datos de Facturación y Entrega</h3>
+                <div class="grupo-campos">
+                    <div class="campo">
+                        <label>Razón Social / Nombre Completo</label>
+                        <input type="text" value="Ferretería Central S.H." readonly>
+                    </div>
+                    <div class="campo">
+                        <label>CUIT (Confirmado)</label>
+                        <input type="text" value="30-71234567-9" readonly>
+                    </div>
+                    <div class="campo">
+                        <label>Dirección de Despacho</label>
+                        <input type="text" placeholder="Calle, Número, Localidad" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-card">
+                <h3><i class="fa-solid fa-credit-card"></i> Método de Pago</h3>
+                <div class="opciones-pago">
+                    <label class="radio-pago">
+                        <input type="radio" name="pago" value="tarjeta" checked>
+                        <span>Tarjeta de Crédito / Débito (Simulado)</span>
+                    </label>
+                    <label class="radio-pago">
+                        <input type="radio" name="pago" value="transferencia">
+                        <span>Transferencia Bancaria (Acondicionado B2B)</span>
+                    </label>
+                </div>
+
+                <div class="datos-tarjeta-simulados" id="bloque-tarjeta">
+                    <div class="campo">
+                        <label>Número de Tarjeta</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div class="sub-campos">
+                        <div class="campo">
+                            <label>Vencimiento</label>
+                            <input type="text" placeholder="MM/AA" maxlength="5">
+                        </div>
+                        <div class="campo">
+                            <label>CVC</label>
+                            <input type="password" placeholder="000" maxlength="4">
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="lista-items-carrito">
-            
-            <div class="estado-vacio">
-                <div class="icono-vacio">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <div class="checkout-resumen">
+            <div class="resumen-fijo-card">
+                <h3>Resumen de Compra</h3>
+                <div class="linea-resumen">
+                    <span>Productos (3)</span>
+                    <span>$170.000</span>
                 </div>
-                <h2>Tu pedido está vacío</h2>
-                <p>Explora nuestro catálogo para armar tu cotización mayorista.</p>
-                <a href="catalogo.html" class="btn-ver-catalogo">
-                    Ver Catálogo <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                </a>
+                <div class="linea-resumen">
+                    <span>Logística (A coordinar)</span>
+                    <span class="gratis">CONVENIR</span>
+                </div>
+                <hr class="divisor-resumen">
+                <div class="linea-resumen total">
+                    <span>Total a Pagar</span>
+                    <span>$170.000</span>
+                </div>
+                
+                <button type="submit" class="btn-confirmar-compra" id="btn-finalizar">
+                    Confirmar y Pagar Pedido
+                </button>
             </div>
-
-        </div>
-
-        <div class="resumen-final-carrito" style="display: none; justify-content: space-between; align-items: center; background-color: #111111; border: 1px solid #222; border-radius: 8px; padding: 25px; margin-top: 30px;">
-            <div class="texto-total">
-                </div>
-            
-            <button onclick="window.location.href='checkout.html'" class="btn-ver-catalogo" style="border: none; cursor: pointer;">
-                Proceder al Pago <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
-            </button>
         </div>
 
     </div>
@@ -96,7 +144,6 @@
     </footer>
 
 <script src="menu.js"></script>
-<script src="carrito.js"></script>
 
 
 </body>

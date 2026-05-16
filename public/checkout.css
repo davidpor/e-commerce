@@ -1,0 +1,278 @@
+/* ==========================================================================
+   PÁGINA DE CHECKOUT (FINALIZAR COMPRA) - VERSIÓN ULTRA RESPONSIVE
+   ========================================================================== */
+
+/* 1. Reset Global de Caja Seguro para evitar desbordes */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.seccion-checkout {
+    background-color: #000000;
+    padding: 50px 4%; /* Margen porcentual dinámico */
+    min-height: 85vh;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-checkout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2 columnas en Desktop */
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.checkout-datos {
+    width: 100%;
+}
+
+.checkout-datos h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: -0.5px;
+}
+
+/* --- TARJETAS CONTENEDORAS --- */
+.checkout-card, .resumen-fijo-card {
+    background-color: #111111;
+    border: 1px solid #222222;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.checkout-card h3, .resumen-fijo-card h3 {
+    color: #ffffff;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkout-card h3 i {
+    color: #f59e0b; 
+}
+
+/* --- FORMULARIOS e INPUTS CONTROLADOS --- */
+.grupo-campos {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.campo label {
+    font-size: 0.8rem;
+    color: #888888;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.campo input {
+    background-color: #161616;
+    border: 1px solid #333333;
+    padding: 14px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 1rem;
+    width: 100%; /* Evita que el input se salga de su contenedor */
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.campo input[readonly] {
+    color: #666666;
+    border-color: #222222;
+    cursor: not-allowed;
+    background-color: #0a0a0a;
+}
+
+/* Sub-grilla interna (Vencimiento y CVC) */
+.sub-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+
+/* --- MÉTODOS DE PAGO --- */
+.opciones-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.radio-pago {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #161616;
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #333333;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.radio-pago:hover {
+    border-color: #555555;
+    background-color: #1a1a1a;
+}
+
+.radio-pago input[type="radio"] {
+    accent-color: #f59e0b;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.radio-pago span {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.datos-tarjeta-simulados {
+    background-color: #0a0a0a;
+    padding: 22px;
+    border-radius: 8px;
+    border: 1px dashed #333333;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+/* --- COLUMNA DERECHA: RESUMEN LATERAL --- */
+.checkout-resumen {
+    width: 100%;
+}
+
+.resumen-fijo-card {
+    position: sticky;
+    top: 90px; /* Se queda fijo al hacer scroll descendente */
+}
+
+.linea-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #aaaaaa;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.linea-resumen .gratis {
+    color: #67c23a;
+    font-weight: 700;
+    background-color: rgba(103, 194, 58, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.divisor-resumen {
+    border: none;
+    border-top: 1px solid #222222;
+    margin: 20px 0;
+}
+
+.linea-resumen.total {
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.btn-confirmar-compra {
+    background-color: #f59e0b;
+    color: #000000;
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: inherit;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-confirmar-compra:hover {
+    background-color: #fbbf24;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+/* ==========================================================================
+   BREAKPOINTS RESPONSIVE (LA SOLUCIÓN AL CORTE DE PANTALLA)
+   ========================================================================== */
+
+/* 1. Tablets y Notebooks chicas (Menos de 1024px) */
+@media (max-width: 1024px) {
+    .contenedor-checkout {
+        grid-template-columns: 1fr; /* Pasa a 1 sola columna vertical */
+        gap: 20px;
+    }
+    
+    .resumen-fijo-card {
+        position: relative; /* Desactivamos el sticky para que fluya abajo naturalmente */
+        top: 0;
+    }
+    
+    .seccion-checkout {
+        padding: 30px 4%;
+    }
+}
+
+/* 2. Celulares Estándar y Grandes (Menos de 768px) */
+@media (max-width: 768px) {
+    .checkout-datos h2 {
+        font-size: 1.6rem; /* Achicamos el título para que no ocupe 3 renglones */
+    }
+
+    .checkout-card, .resumen-fijo-card {
+        padding: 20px; /* Menos padding interno para darle más aire a los inputs */
+    }
+}
+
+/* 3. Celulares Chicos (Menos de 480px - El punto crítico de quiebre) */
+@media (max-width: 480px) {
+    .sub-campos {
+        grid-template-columns: 1fr; /* Desarmamos las 2 columnas de la tarjeta */
+        gap: 15px; /* Evita que el Vencimiento y CVC se pisen */
+    }
+    
+    .radio-pago span {
+        font-size: 0.85rem; /* Letra un poco más chica para que entre el texto largo */
+    }
+    
+    .checkout-card h3, .resumen-fijo-card h3 {
+        font-size: 1.05rem;
+    }
+}

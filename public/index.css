@@ -160,6 +160,27 @@ header {
     transition: all 0.3s ease;
 }
 
+
+/* --- CONTADOR DEL CARRITO --- */
+.badge-carrito {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #f59e0b; /* Naranja ObraMaestra */
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000; /* Borde negro para que resalte sobre el ícono */
+    display: none; /* Oculto por defecto si está en 0 */
+}
+
+
 .caja-shopping svg {
     width: 20px;
     transition: transform 0.3s;

@@ -35,5 +35,12 @@ arregle cosas del front detalles de iconos agregue paginas como la de terminos y
  -la de usuario
  -detalles del pedido 
 
+ para el perfil del cliente despues para el perfil de admin falta pero no son muchas modificaciones, 
 
+
+
+16/05/2026 : 12:30  -
+
+ultimos cambios agregado de una paginas de mas, archivos .js para pruebas de perfil 
+falta el perfil del administrador y una pagina a la que el solo tenga acceso y pueda gestionar ciertas cosas
 

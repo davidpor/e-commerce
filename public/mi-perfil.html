@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - ObraMaestra</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="index.css"> 
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+    <header>
+        <div class="tipologo">
+            <div class="caja-naranja">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hard-hat-icon lucide-hard-hat"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M14 6a6 6 0 0 1 6 6v3"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><rect x="2" y="15" width="20" height="4" rx="1"/></svg>
+            </div>
+            <span>OBRAMAESTRA</span>
+        </div>
+
+        <nav class="nav-principal">
+            <ul class="navLinks">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="catalogo.html">CATÁLOGO</a></li>   
+                <li><a href="nosotros.html">NOSOTROS</a></li>  
+                <li><a href="contacto.html">CONTACTO</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-point">
+
+            <a href="carrito.html" style="position: relative; display: inline-block;">
+                <div class="caja-shopping">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </div>
+                <span class="badge-carrito" id="contador-carrito" style="display:none;">0</span>
+            </a>
+
+            <button class="btn-login" id="btn-perfil">
+                <div class="caja-icon-login">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-icon lucide-user-round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                </div> 
+                <span class="texto-login" id="texto-perfil">Ingresar</span>
+            </button>
+
+            <button class="btn-hamburguesa" id="btn-hamburguesa">
+                <svg class="icono-barras" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/> </svg>
+                <svg class="icono-x" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+
+        </div>
+    </header>
+
+    <main class="seccion-perfil">
+        <div class="cabecera-perfil">
+            <h1 id="saludo-usuario">Hola, Usuario</h1>
+            <button id="btn-cerrar-sesion" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+        </div>
+
+        <div class="bento-grid-perfil">
+            <div class="bento-item datos-usuario">
+                <h3><i class="fa-solid fa-building"></i> Datos de Facturación</h3>
+                <div class="info-bento-block">
+                    <p><strong>Razón Social:</strong> <span id="nombre-empresa">Ferretería S.H.</span></p>
+                    <p><strong>Email:</strong> <span id="email-empresa">contacto@empresa.com</span></p>
+                    <p><strong>CUIT:</strong> 30-71234567-9</p>
+                    <p><strong>Teléfono:</strong> 261 - 4558899</p>
+                </div>
+                <button class="btn-editar-perfil" style="margin-top: 15px; background: #333; color: #fff; border: none; padding: 10px; border-radius: 6px; cursor:pointer;">Solicitar cambio de datos</button>
+            </div>
+
+            <div class="bento-item stats-usuario">
+                <div class="stat-box">
+                    <span class="num-stat">1</span>
+                    <span class="txt-stat">Pedidos Activos</span>
+                </div>
+                <div class="stat-box" style="margin-top: 15px;">
+                    <span class="num-stat" style="color: #67c23a; font-size: 1.2rem;">Verificada</span>
+                    <span class="txt-stat">Estado de Cuenta</span>
+                </div>
+            </div>
+
+            <div class="bento-item seguimiento-envio">
+                <div class="head-seguimiento">
+                    <h3><i class="fa-solid fa-truck-ramp-box"></i> Estado de Envío</h3>
+                    <span class="num-operacion">Operación #1042</span>
+                </div>
+                
+                <div class="pedido-recortado">
+                    <p class="txt-recortado">
+                        <i class="fa-solid fa-boxes-stacked"></i> 
+                        Amoladora Angular Bosch 750W (+ otros artículos...)
+                    </p>
+                    <span class="precio-pedido-resumen">Total: $255.000</span>
+                </div>
+
+                <div class="linea-estado-actual">
+                    <div class="contenedor-punto-estado">
+                        <span class="punto-dinamico gestionando"></span>
+                        <span class="txt-estado-actual">Estado actual: <strong>Gestionando Envío</strong></span>
+                    </div>
+                    <p class="aviso-logistica">Un asesor se comunicará al teléfono cargado para coordinar la entrega.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="menu.js"></script>
+    <script src="perfil.js"></script>
+</body>
+</html>
