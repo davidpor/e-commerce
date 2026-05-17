@@ -44,3 +44,12 @@ arregle cosas del front detalles de iconos agregue paginas como la de terminos y
 ultimos cambios agregado de una paginas de mas, archivos .js para pruebas de perfil 
 falta el perfil del administrador y una pagina a la que el solo tenga acceso y pueda gestionar ciertas cosas
 
+
+
+17/05/2026 : 00:48  -
+
+verifico cambios recientes en la rama principal y los actualizo con los mios, no hice muchos cambios yo en general. 
+
+
+
+
