@@ -62,50 +62,33 @@ const crearPreferencia = async (orderId, userId) => {
 
   const response = await preference.create({
     body: {
-      items,
-
-      // Referencia externa: el ID de nuestro pedido
-      // MP nos lo devuelve en el webhook para identificar el pago
+      items: pedido.items.map(item => ({
+        title: item.nombre_producto,
+        quantity: item.cantidad,
+        unit_price: Number(item.precio_unitario),
+        currency_id: 'ARS'
+      })),
       external_reference: orderId.toString(),
-
-      // Datos del comprador (mejora la experiencia en el checkout)
       payer: {
         name: pedido.empresa?.razon_social || '',
         email: pedido.empresa?.email_contacto || '',
       },
-
-      // URLs de redirección después del pago
       back_urls: {
         success: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-exitoso`,
         failure: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-fallido`,
         pending: `${process.env.FRONTEND_URL}/mis-pedidos/${orderId}/pago-pendiente`,
       },
-
-      // MP redirige automáticamente al success/failure
-      auto_return: 'approved',
-
-      // URL donde MP nos avisa del resultado del pago (webhook)
+      // auto_return solo funciona con HTTPS — lo removemos en desarrollo
+      // auto_return: 'approved',
       notification_url: `${process.env.API_URL}/api/payments/webhook`,
-
-      // Vencimiento de la preferencia: 24 horas
-      expiration_date_to: new Date(
-        Date.now() + 24 * 60 * 60 * 1000
-      ).toISOString(),
-
-      // Metadata adicional para debugging
+      expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       metadata: {
         order_id: orderId,
-        order_num: pedido.numero,
         company_id: pedido.company_id,
       },
-
-      // Medios de pago habilitados
-      // En B2B evitamos efectivo y solo habilitamos tarjeta y transferencia
       payment_methods: {
-        excluded_payment_types: [
-          { id: 'ticket' } // excluimos pagos en efectivo (Rapipago, Pago Fácil)
-        ],
-        installments: 12, // hasta 12 cuotas
+        excluded_payment_types: [{ id: 'ticket' }],
+        installments: 12,
       },
     },
   });

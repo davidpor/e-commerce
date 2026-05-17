@@ -52,6 +52,8 @@ app.use(cors({
 // Rate limiting general — aplica a todas las rutas
 app.use('/api', limiterGeneral);
 
+app.set('trust proxy', 1);
+
 // ── Logging y parseo ───────────────────────────────────────────────────────
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
