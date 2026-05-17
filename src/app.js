@@ -13,7 +13,6 @@ const { limiterGeneral } = require('./middlewares/rateLimit.middleware');
 const sequelize = require('./config/database');
 require('./config/redis');
 
-const path = require('path');
 
 // Cargamos todos los modelos antes del sync
 require('./modules/users/company.model');

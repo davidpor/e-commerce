@@ -48,7 +48,7 @@ falta el perfil del administrador y una pagina a la que el solo tenga acceso y p
 
 17/05/2026 : 00:48  -
 
-verifico cambios recientes en la rama principal y los actualizo con los mios, no hice muchos cambios yo en general. 
+verifico cambios recientes en la rama principal y los actualizo con los mios, no hice muchos cambios yo en general.
 
 
 
