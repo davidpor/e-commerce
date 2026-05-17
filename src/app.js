@@ -1,11 +1,12 @@
 // src/app.js
 require('dotenv').config();
 
-const express    = require('express');
-const cors       = require('cors');
-const helmet     = require('helmet');
-const morgan     = require('morgan');
-const swaggerUi  = require('swagger-ui-express');
+const path = require('path');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 const { limiterGeneral } = require('./middlewares/rateLimit.middleware');
 
@@ -32,8 +33,22 @@ app.use(helmet({
 }));
 
 app.use(cors({
-  origin:      process.env.FRONTEND_URL,
-  credentials: true,
+  origin: (origin, callback) => {
+    // Lista de orígenes permitidos
+    const permitidos = [
+      'http://localhost:3001',   // frontend en desarrollo local
+      'http://localhost:3000',   // para pruebas desde el mismo puerto
+      process.env.FRONTEND_URL, // URL configurada en .env
+    ].filter(Boolean);
+
+    // Permitimos requests sin origin (curl, Postman, Swagger)
+    if (!origin || permitidos.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS bloqueado para: ${origin}`));
+    }
+  },
+  credentials: true
 }));
 
 // Rate limiting general — aplica a todas las rutas
@@ -43,6 +58,12 @@ app.use('/api', limiterGeneral);
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// Servimos las imágenes subidas como archivos estáticos
+
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+}, express.static(path.join(__dirname, '..', 'uploads')));
 
 // Servir archivos estáticos (HTML, CSS, JS, Imágenes) desde la carpeta public
       // esto le agregue para ver el html <------------
@@ -60,37 +81,38 @@ app.get('/api/docs.json', (req, res) => res.json(swaggerSpec));
 // ── Rutas base ─────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => {
   res.json({
-    status:      'ok',
-    timestamp:   new Date().toISOString(),
+    status: 'ok',
+    timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-    version:     '1.0.0',
+    version: '1.0.0',
   });
 });
 
 /*  le comente esta parte para pruebas 
 app.get('/', (req, res) => {
   res.json({
-    nombre:        'Ferretería B2B API',
-    version:       '1.0.0',
+    nombre: 'Ferretería B2B API',
+    version: '1.0.0',
     documentacion: '/api/docs',
   });
 });
 */
 
 // ── Módulos de la API ──────────────────────────────────────────────────────
-app.use('/api/auth',     require('./modules/auth/auth.router'));
+app.use('/api/auth', require('./modules/auth/auth.router'));
 app.use('/api/products', require('./modules/catalog/catalog.router'));
-app.use('/api/pricing',  require('./modules/pricing/pricing.router'));
-app.use('/api/quotes',   require('./modules/quotes/quotes.router'));
-app.use('/api/orders',   require('./modules/orders/orders.router'));
+app.use('/api/pricing', require('./modules/pricing/pricing.router'));
+app.use('/api/quotes', require('./modules/quotes/quotes.router'));
+app.use('/api/orders', require('./modules/orders/orders.router'));
 app.use('/api/payments', require('./modules/payments/payments.router'));
+app.use('/api/companies', require('./modules/users/companies.router'));
 
 // ── 404 ────────────────────────────────────────────────────────────────────
 app.use((req, res) => {
   res.status(404).json({
     error: 'Ruta no encontrada',
-    ruta:  req.originalUrl,
-    docs:  '/api/docs',
+    ruta: req.originalUrl,
+    docs: '/api/docs',
   });
 });
 

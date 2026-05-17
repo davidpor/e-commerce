@@ -1,6 +1,6 @@
 // src/modules/catalog/catalog.service.js
 const { Op } = require('sequelize');
-const Product  = require('./product.model');
+const Product = require('./product.model');
 const Category = require('./category.model');
 const { errors } = require('../../utils/errors');
 const { getPagination, getPaginationMeta } = require('../../utils/pagination');
@@ -60,10 +60,10 @@ const getProductos = async (query) => {
   // Búsqueda por texto: busca en nombre, SKU y descripción
   if (query.buscar) {
     where[Op.or] = [
-      { nombre:      { [Op.like]: `%${query.buscar}%` } },
-      { sku:         { [Op.like]: `%${query.buscar}%` } },
+      { nombre: { [Op.like]: `%${query.buscar}%` } },
+      { sku: { [Op.like]: `%${query.buscar}%` } },
       { descripcion: { [Op.like]: `%${query.buscar}%` } },
-      { marca:       { [Op.like]: `%${query.buscar}%` } },
+      { marca: { [Op.like]: `%${query.buscar}%` } },
     ];
   }
 
@@ -96,11 +96,11 @@ const getProductos = async (query) => {
 
   // Ordenamiento
   const ordenesValidos = {
-    'nombre_asc':   ['nombre', 'ASC'],
-    'nombre_desc':  ['nombre', 'DESC'],
-    'precio_asc':   ['precio_lista', 'ASC'],
-    'precio_desc':  ['precio_lista', 'DESC'],
-    'recientes':    ['created_at', 'DESC'],
+    'nombre_asc': ['nombre', 'ASC'],
+    'nombre_desc': ['nombre', 'DESC'],
+    'precio_asc': ['precio_lista', 'ASC'],
+    'precio_desc': ['precio_lista', 'DESC'],
+    'recientes': ['created_at', 'DESC'],
   };
   const orden = ordenesValidos[query.orden] || ['nombre', 'ASC'];
 
@@ -136,32 +136,75 @@ const getProductoPorSlug = async (slug) => {
   return producto;
 };
 
-const crearProducto = async (data) => {
-  // Verificamos que el SKU no exista
-  const skuExiste = await Product.findOne({ 
-    where: { sku: data.sku.toUpperCase() } 
+const crearProducto = async (data, file) => {
+  const skuExiste = await Product.findOne({
+    where: { sku: data.sku.toUpperCase() }
   });
   if (skuExiste) throw errors.conflict(`Ya existe un producto con el SKU ${data.sku}`);
 
   const slug = generarSlug(data.nombre);
-
-  // Si el slug ya existe, le agregamos el SKU para hacerlo único
   const slugExiste = await Product.findOne({ where: { slug } });
-  const slugFinal  = slugExiste ? `${slug}-${data.sku.toLowerCase()}` : slug;
+  const slugFinal = slugExiste ? `${slug}-${data.sku.toLowerCase()}` : slug;
 
-  return Product.create({ ...data, slug: slugFinal });
+  // Log para confirmar que llega el archivo
+  console.log('[crearProducto] file:', file?.filename);
+
+  return Product.create({
+    sku: data.sku?.toUpperCase(),
+    nombre: data.nombre,
+    descripcion: data.descripcion || null,
+    marca: data.marca || null,
+    precio_lista: parseFloat(data.precio_lista) || 0,
+    precio_costo: parseFloat(data.precio_costo) || 0,
+    stock_actual: parseInt(data.stock_actual) || 0,
+    stock_minimo: parseInt(data.stock_minimo) || 0,
+    cantidad_minima: parseInt(data.cantidad_minima) || 1,
+    contenido_por_unidad: parseInt(data.contenido_por_unidad) || 1,
+    unidad_venta: data.unidad_venta || 'unidad',
+    category_id: data.category_id ? parseInt(data.category_id) : null,
+    activo: data.activo === 'true' || data.activo === true,
+    destacado: data.destacado === 'true' || data.destacado === true,
+    slug: slugFinal,
+    imagen_url: file ? `/uploads/products/${file.filename}` : null,
+  });
 };
 
-const actualizarProducto = async (id, data) => {
+const actualizarProducto = async (id, data, file) => {
   const producto = await Product.findByPk(id);
   if (!producto) throw errors.notFound('Producto');
 
-  // Si cambia el nombre, regeneramos el slug
-  if (data.nombre && data.nombre !== producto.nombre) {
-    data.slug = generarSlug(data.nombre);
-  }
+  // Log para confirmar que llega el archivo
+  console.log('[actualizarProducto] file:', file?.filename);
 
-  await producto.update(data);
+  const actualizar = {};
+
+  if (data.nombre) actualizar.nombre = data.nombre;
+  if (data.descripcion !== undefined) actualizar.descripcion = data.descripcion;
+  if (data.marca !== undefined) actualizar.marca = data.marca;
+  if (data.precio_lista) actualizar.precio_lista = parseFloat(data.precio_lista);
+  if (data.precio_costo) actualizar.precio_costo = parseFloat(data.precio_costo);
+  if (data.stock_actual !== undefined) actualizar.stock_actual = parseInt(data.stock_actual);
+  if (data.stock_minimo !== undefined) actualizar.stock_minimo = parseInt(data.stock_minimo);
+  if (data.cantidad_minima) actualizar.cantidad_minima = parseInt(data.cantidad_minima);
+  if (data.contenido_por_unidad) actualizar.contenido_por_unidad = parseInt(data.contenido_por_unidad);
+  if (data.category_id) actualizar.category_id = parseInt(data.category_id);
+  if (data.unidad_venta) actualizar.unidad_venta = data.unidad_venta;
+
+  // Booleans desde FormData vienen como string
+  if (data.activo !== undefined)
+    actualizar.activo = data.activo === 'true' || data.activo === true;
+  if (data.destacado !== undefined)
+    actualizar.destacado = data.destacado === 'true' || data.destacado === true;
+
+  // Slug nuevo si cambió el nombre
+  if (data.nombre && data.nombre !== producto.nombre)
+    actualizar.slug = generarSlug(data.nombre);
+
+  // Imagen nueva
+  if (file)
+    actualizar.imagen_url = `/uploads/products/${file.filename}`;
+
+  await producto.update(actualizar);
   return producto.reload({ include: [{ model: Category, as: 'categoria' }] });
 };
 
@@ -193,7 +236,7 @@ const actualizarStock = async (id, cantidad, operacion) => {
   await producto.update({ stock_actual: nuevoStock });
 
   // Advertencia si quedó por debajo del mínimo
-  const alerta = nuevoStock <= producto.stock_minimo 
+  const alerta = nuevoStock <= producto.stock_minimo
     ? `⚠️ Stock bajo: quedan ${nuevoStock} unidades (mínimo: ${producto.stock_minimo})`
     : null;
 

@@ -97,4 +97,8 @@ const Company = sequelize.define('Company', {
   underscored: true,           // usa snake_case en la BD (price_list_id, no priceListId)
 });
 
+const { PriceList } = require('../pricing/pricing.model');
+
+Company.belongsTo(PriceList, { foreignKey: 'price_list_id', as: 'listaPrecio' });
+
 module.exports = Company;

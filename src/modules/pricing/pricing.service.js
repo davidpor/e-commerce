@@ -1,7 +1,7 @@
 // src/modules/pricing/pricing.service.js
 const { PriceList, PriceListItem } = require('./pricing.model');
-const Product  = require('../catalog/product.model');
-const Company  = require('../users/company.model');
+const Product = require('../catalog/product.model');
+const Company = require('../users/company.model');
 const { errors } = require('../../utils/errors');
 
 // ── Función clave del sistema B2B ──────────────────────────────────────────
@@ -16,9 +16,9 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   // Si la empresa no tiene lista asignada, usamos el precio base del producto
   if (!empresa || !empresa.price_list_id) {
     return {
-      precio_unitario:  parseFloat(producto.precio_lista),
+      precio_unitario: parseFloat(producto.precio_lista),
       descuento_aplicado: 0,
-      precio_final:     parseFloat(producto.precio_lista),
+      precio_final: parseFloat(producto.precio_lista),
       cantidad,
       subtotal: parseFloat(producto.precio_lista) * cantidad,
       origen: 'precio_base',
@@ -29,9 +29,9 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   if (!lista || !lista.activa) {
     // Lista inactiva: caemos al precio base
     return {
-      precio_unitario:   parseFloat(producto.precio_lista),
+      precio_unitario: parseFloat(producto.precio_lista),
       descuento_aplicado: 0,
-      precio_final:      parseFloat(producto.precio_lista),
+      precio_final: parseFloat(producto.precio_lista),
       cantidad,
       subtotal: parseFloat(producto.precio_lista) * cantidad,
       origen: 'precio_base',
@@ -42,8 +42,8 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   const itemLista = await PriceListItem.findOne({
     where: {
       price_list_id: lista.id,
-      product_id:    productId,
-      activo:        true,
+      product_id: productId,
+      activo: true,
     },
   });
 
@@ -53,11 +53,11 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   if (itemLista) {
     // Hay precio específico para este producto → lo usamos
     precioBase = parseFloat(itemLista.precio);
-    origen     = 'precio_lista_especifico';
+    origen = 'precio_lista_especifico';
 
     // Verificamos si aplica algún descuento por volumen
     const descuentosVolumen = itemLista.descuentos_volumen || [];
-    
+
     // Ordenamos de mayor a menor cantidad para encontrar el mayor descuento aplicable
     const descuentosOrdenados = [...descuentosVolumen].sort(
       (a, b) => b.cantidad - a.cantidad
@@ -69,12 +69,12 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
     );
 
     if (descuentoVolumen) {
-      const pct          = descuentoVolumen.descuento / 100;
-      const precioFinal  = precioBase * (1 - pct);
+      const pct = descuentoVolumen.descuento / 100;
+      const precioFinal = precioBase * (1 - pct);
       return {
-        precio_unitario:    precioBase,
+        precio_unitario: precioBase,
         descuento_aplicado: descuentoVolumen.descuento,
-        precio_final:       Math.round(precioFinal * 100) / 100,
+        precio_final: Math.round(precioFinal * 100) / 100,
         cantidad,
         subtotal: Math.round(precioFinal * cantidad * 100) / 100,
         origen: 'descuento_volumen',
@@ -84,9 +84,9 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   } else {
     // No hay precio específico → aplicamos descuento_global de la lista
     // sobre el precio_lista base del producto
-    const pct      = parseFloat(lista.descuento_global) / 100;
-    precioBase     = parseFloat(producto.precio_lista) * (1 - pct);
-    origen         = 'descuento_global_lista';
+    const pct = parseFloat(lista.descuento_global) / 100;
+    precioBase = parseFloat(producto.precio_lista) * (1 - pct);
+    origen = 'descuento_global_lista';
   }
 
   // También aplicamos el descuento_base negociado con la empresa
@@ -94,17 +94,17 @@ const calcularPrecio = async (productId, companyId, cantidad = 1) => {
   let precioFinal = precioBase;
   if (empresa.descuento_base > 0) {
     const pctEmpresa = parseFloat(empresa.descuento_base) / 100;
-    precioFinal      = precioBase * (1 - pctEmpresa);
-    origen           = `${origen}+descuento_empresa`;
+    precioFinal = precioBase * (1 - pctEmpresa);
+    origen = `${origen}+descuento_empresa`;
   }
 
   precioFinal = Math.round(precioFinal * 100) / 100;
 
   return {
-    precio_unitario:    parseFloat(producto.precio_lista), // precio de referencia
-    precio_con_lista:   Math.round(precioBase * 100) / 100,
+    precio_unitario: parseFloat(producto.precio_lista), // precio de referencia
+    precio_con_lista: Math.round(precioBase * 100) / 100,
     descuento_aplicado: parseFloat(empresa.descuento_base),
-    precio_final:       precioFinal,
+    precio_final: precioFinal,
     cantidad,
     subtotal: Math.round(precioFinal * cantidad * 100) / 100,
     origen,
@@ -159,7 +159,7 @@ const actualizarLista = async (id, data) => {
 // ── CRUD de ítems (precios por producto) ──────────────────────────────────
 
 const agregarOActualizarItem = async (listId, data) => {
-  const lista    = await PriceList.findByPk(listId);
+  const lista = await PriceList.findByPk(listId);
   if (!lista) throw errors.notFound('Lista de precios');
 
   const producto = await Product.findByPk(data.product_id);
@@ -201,12 +201,12 @@ const asignarListaAEmpresa = async (companyId, priceListId) => {
 // Devuelve el catálogo completo con precios calculados para una empresa
 const getCatalogoConPrecios = async (companyId, query = {}) => {
   const { Op } = require('sequelize');
-  const where  = { activo: true };
+  const where = { activo: true };
 
   if (query.buscar) {
     where[Op.or] = [
       { nombre: { [Op.like]: `%${query.buscar}%` } },
-      { sku:    { [Op.like]: `%${query.buscar}%` } },
+      { sku: { [Op.like]: `%${query.buscar}%` } },
     ];
   }
 
@@ -217,16 +217,23 @@ const getCatalogoConPrecios = async (companyId, query = {}) => {
     productos.map(async (p) => {
       const precio = await calcularPrecio(p.id, companyId, 1);
       return {
-        id:               p.id,
-        sku:              p.sku,
-        nombre:           p.nombre,
-        marca:            p.marca,
-        unidad_venta:     p.unidad_venta,
-        cantidad_minima:  p.cantidad_minima,
-        stock_actual:     p.stock_actual,
-        precio_lista:     parseFloat(p.precio_lista), // precio de referencia
-        precio_cliente:   precio.precio_final,         // precio real para esta empresa
-        descuento:        precio.descuento_aplicado,
+        id: p.id,
+        sku: p.sku,
+        slug: p.slug,
+        nombre: p.nombre,
+        descripcion: p.descripcion,
+        marca: p.marca,
+        imagen_url: p.imagen_url,
+        unidad_venta: p.unidad_venta,
+        cantidad_minima: p.cantidad_minima,
+        contenido_por_unidad: p.contenido_por_unidad,
+        stock_actual: p.stock_actual,
+        stock_minimo: p.stock_minimo,
+        precio_lista: parseFloat(p.precio_lista),
+        precio_cliente: precio.precio_final,
+        descuento: precio.descuento_aplicado,
+        categoria: p.categoria,
+        destacado: p.destacado,
       };
     })
   );

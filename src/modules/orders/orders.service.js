@@ -6,15 +6,16 @@ const Company = require('../users/company.model');
 const { errors } = require('../../utils/errors');
 const { getPagination, getPaginationMeta } = require('../../utils/pagination');
 const emailService = require('../notifications/email.service');
+const n8n = require('../notifications/n8n.service');
 
 // ── Función privada: registra cada cambio de estado ───────────────────────
 const registrarCambioEstado = async (orderId, estadoAnterior, estadoNuevo, userId, nota) => {
   await OrderStatusLog.create({
-    order_id:        orderId,
+    order_id: orderId,
     estado_anterior: estadoAnterior,
-    estado_nuevo:    estadoNuevo,
-    nota:            nota || null,
-    changed_by:      userId,
+    estado_nuevo: estadoNuevo,
+    nota: nota || null,
+    changed_by: userId,
   });
 };
 
@@ -31,7 +32,7 @@ const getPedidoCompleto = (id) => Order.findByPk(id, {
       }],
     },
     { model: Company, as: 'empresa', attributes: ['id', 'razon_social', 'cuit'] },
-    { model: require('../users/user.model'), as: 'creador',  attributes: ['id', 'nombre', 'apellido'] },
+    { model: require('../users/user.model'), as: 'creador', attributes: ['id', 'nombre', 'apellido'] },
     { model: require('../users/user.model'), as: 'vendedor', attributes: ['id', 'nombre', 'apellido'] },
     { model: OrderStatusLog, as: 'historial', order: [['created_at', 'ASC']] },
   ],
@@ -62,42 +63,42 @@ const crearDesdeCotizacion = async (quoteId, userId, data) => {
 
   // Creamos el pedido
   const pedido = await Order.create({
-    quote_id:          quoteId,
-    company_id:        cotizacion.company_id,
-    created_by:        userId,
-    metodo_pago:       data.metodo_pago,
-    subtotal:          cotizacion.subtotal,
-    descuento_extra:   cotizacion.descuento_extra,
-    iva_porcentaje:    cotizacion.iva_porcentaje,
-    iva_monto:         cotizacion.iva_monto,
-    total:             cotizacion.total,
+    quote_id: quoteId,
+    company_id: cotizacion.company_id,
+    created_by: userId,
+    metodo_pago: data.metodo_pago,
+    subtotal: cotizacion.subtotal,
+    descuento_extra: cotizacion.descuento_extra,
+    iva_porcentaje: cotizacion.iva_porcentaje,
+    iva_monto: cotizacion.iva_monto,
+    total: cotizacion.total,
     direccion_entrega: data.direccion_entrega,
-    observaciones:     data.observaciones || cotizacion.observaciones_cliente,
+    observaciones: data.observaciones || cotizacion.observaciones_cliente,
   });
 
   // Copiamos los ítems de la cotización al pedido
   for (const item of cotizacion.items) {
     await OrderItem.create({
-      order_id:           pedido.id,
-      product_id:         item.product_id,
-      cantidad:           item.cantidad,
-      precio_unitario:    item.precio_unitario,
+      order_id: pedido.id,
+      product_id: item.product_id,
+      cantidad: item.cantidad,
+      precio_unitario: item.precio_unitario,
       descuento_aplicado: item.descuento_aplicado,
-      subtotal:           item.subtotal,
-      nombre_producto:    item.nombre_producto,
-      sku_producto:       item.sku_producto,
+      subtotal: item.subtotal,
+      nombre_producto: item.nombre_producto,
+      sku_producto: item.sku_producto,
     });
 
     // Descontamos el stock inmediatamente al confirmar el pedido
     await Product.decrement('stock_actual', {
-      by:    item.cantidad,
+      by: item.cantidad,
       where: { id: item.product_id },
     });
   }
 
   // Marcamos la cotización como convertida
   await cotizacion.update({
-    estado:   'convertida',
+    estado: 'convertida',
     order_id: pedido.id,
   });
 
@@ -107,12 +108,12 @@ const crearDesdeCotizacion = async (quoteId, userId, data) => {
     `Pedido creado desde cotización ${cotizacion.numero}`
   );
 
-const pedidoCompleto = await getPedidoCompleto(pedido.id);
-await emailService.enviarPedidoConfirmado({
-  email:  pedidoCompleto.empresa.email_contacto,
-  nombre: pedidoCompleto.creador.nombre,
-  pedido: pedidoCompleto,
-});
+  const pedidoCompleto = await getPedidoCompleto(pedido.id);
+  await emailService.enviarPedidoConfirmado({
+    email: pedidoCompleto.empresa.email_contacto,
+    nombre: pedidoCompleto.creador.nombre,
+    pedido: pedidoCompleto,
+  });
 
   return getPedidoCompleto(pedido.id);
 };
@@ -120,11 +121,11 @@ await emailService.enviarPedidoConfirmado({
 // ── Máquina de estados ─────────────────────────────────────────────────────
 // Define qué transiciones son válidas desde cada estado
 const TRANSICIONES_VALIDAS = {
-  confirmado:      ['en_preparacion', 'cancelado'],
-  en_preparacion:  ['despachado', 'cancelado'],
-  despachado:      ['entregado'],
-  entregado:       [],   // estado final, no se puede mover
-  cancelado:       [],   // estado final, no se puede mover
+  confirmado: ['en_preparacion', 'cancelado'],
+  en_preparacion: ['despachado', 'cancelado'],
+  despachado: ['entregado'],
+  entregado: [],   // estado final, no se puede mover
+  cancelado: [],   // estado final, no se puede mover
 };
 
 const cambiarEstado = async (orderId, nuevoEstado, userId, data = {}) => {
@@ -141,7 +142,7 @@ const cambiarEstado = async (orderId, nuevoEstado, userId, data = {}) => {
   }
 
   const estadoAnterior = pedido.estado;
-  const actualizacion  = { estado: nuevoEstado };
+  const actualizacion = { estado: nuevoEstado };
 
   // Acciones específicas por estado
   if (nuevoEstado === 'en_preparacion') {
@@ -149,18 +150,22 @@ const cambiarEstado = async (orderId, nuevoEstado, userId, data = {}) => {
   }
 
   if (nuevoEstado === 'despachado') {
-    actualizacion.fecha_despacho  = new Date();
-    actualizacion.numero_remito   = data.numero_remito;
-    actualizacion.numero_factura  = data.numero_factura;
+    actualizacion.fecha_despacho = new Date();
+    actualizacion.numero_remito = data.numero_remito;
+    actualizacion.numero_factura = data.numero_factura;
+
+    const pedidoCompleto = await getPedidoCompleto(orderId);
+    await n8n.notificarPedidoDespachado(pedidoCompleto, pedidoCompleto.empresa);
+
   }
 
   if (nuevoEstado === 'entregado') {
     actualizacion.fecha_entrega = new Date();
-    actualizacion.estado_pago   = 'pagado'; // al entregar asumimos pago confirmado
+    actualizacion.estado_pago = 'pagado'; // al entregar asumimos pago confirmado
   }
 
   if (nuevoEstado === 'cancelado') {
-    actualizacion.fecha_cancelacion  = new Date();
+    actualizacion.fecha_cancelacion = new Date();
     actualizacion.motivo_cancelacion = data.motivo;
 
     // Si se cancela antes de despachar, devolvemos el stock
@@ -168,7 +173,7 @@ const cambiarEstado = async (orderId, nuevoEstado, userId, data = {}) => {
       const items = await OrderItem.findAll({ where: { order_id: orderId } });
       for (const item of items) {
         await Product.increment('stock_actual', {
-          by:    item.cantidad,
+          by: item.cantidad,
           where: { id: item.product_id },
         });
       }
@@ -194,7 +199,7 @@ const getPedidos = async (user, query) => {
   // Clientes solo ven sus pedidos
   if (user.rol === 'cliente') where.company_id = user.company_id;
 
-  if (query.estado)     where.estado     = query.estado;
+  if (query.estado) where.estado = query.estado;
   if (query.estado_pago) where.estado_pago = query.estado_pago;
   if (query.company_id && user.rol !== 'cliente') {
     where.company_id = query.company_id;
@@ -212,7 +217,7 @@ const getPedidos = async (user, query) => {
   });
 
   return {
-    pedidos:    rows,
+    pedidos: rows,
     paginacion: getPaginationMeta(count, page, limit),
   };
 };

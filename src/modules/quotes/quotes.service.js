@@ -1,15 +1,21 @@
 // src/modules/quotes/quotes.service.js
 const { Quote, QuoteItem } = require('./quote.model');
-const Product  = require('../catalog/product.model');
-const Company  = require('../users/company.model');
+const Product = require('../catalog/product.model');
+const Company = require('../users/company.model');
 const { calcularPrecio } = require('../pricing/pricing.service');
 const { errors } = require('../../utils/errors');
 const { getPagination, getPaginationMeta } = require('../../utils/pagination');
 const emailService = require('../notifications/email.service');
+const n8n = require('../notifications/n8n.service');
 
 // ── Función privada: recalcula los totales de una cotización ───────────────
 const recalcularTotales = async (quoteId) => {
   const items = await QuoteItem.findAll({ where: { quote_id: quoteId } });
+  if (!items || items.length === 0) {
+    const quote = await Quote.findByPk(quoteId);
+    await quote.update({ subtotal: 0, iva_monto: 0, total: 0 });
+    return quote;
+  }
 
   const subtotal = items.reduce(
     (acc, item) => acc + parseFloat(item.subtotal), 0
@@ -22,15 +28,25 @@ const recalcularTotales = async (quoteId) => {
 
   // Calculamos IVA
   const ivaMonto = baseConDescuento * (parseFloat(quote.iva_porcentaje) / 100);
-  const total    = baseConDescuento + ivaMonto;
+  const total = baseConDescuento + ivaMonto;
 
   await quote.update({
-    subtotal:  Math.round(subtotal * 100) / 100,
+    subtotal: Math.round(subtotal * 100) / 100,
     iva_monto: Math.round(ivaMonto * 100) / 100,
-    total:     Math.round(total * 100) / 100,
+    total: Math.round(total * 100) / 100,
   });
 
   return quote;
+};
+// ── Función privada: verifica si una cotización ha vencido ────────────────
+const verificarVencimiento = async (quoteId) => {
+  const quote = await Quote.findByPk(quoteId);
+  if (!quote) return;
+
+  const hoy = new Date().toISOString().split('T')[0];
+  if (quote.estado === 'aprobada' && quote.fecha_vencimiento < hoy) {
+    await quote.update({ estado: 'vencida' });
+  }
 };
 
 // ── Crear cotización ───────────────────────────────────────────────────────
@@ -41,10 +57,10 @@ const crearCotizacion = async (userId, companyId, data) => {
 
   // Creamos la cotización vacía
   const cotizacion = await Quote.create({
-    company_id:            companyId,
-    created_by:            userId,
+    company_id: companyId,
+    created_by: userId,
     observaciones_cliente: data.observaciones_cliente,
-    iva_porcentaje:        empresa.condicion_iva === 'exento' ? 0 : 21,
+    iva_porcentaje: empresa.condicion_iva === 'exento' ? 0 : 21,
   });
 
   // Agregamos los ítems si vinieron en el request
@@ -89,21 +105,21 @@ const agregarItems = async (quoteId, companyId, items) => {
 
     if (itemExistente) {
       await itemExistente.update({
-        cantidad:           item.cantidad,
-        precio_unitario:    precio.precio_final,
+        cantidad: item.cantidad,
+        precio_unitario: precio.precio_final,
         descuento_aplicado: precio.descuento_aplicado,
         subtotal,
       });
     } else {
       await QuoteItem.create({
-        quote_id:           quoteId,
-        product_id:         item.product_id,
-        cantidad:           item.cantidad,
-        precio_unitario:    precio.precio_final,
+        quote_id: quoteId,
+        product_id: item.product_id,
+        cantidad: item.cantidad,
+        precio_unitario: precio.precio_final,
         descuento_aplicado: precio.descuento_aplicado,
         subtotal,
-        nombre_producto:    producto.nombre,
-        sku_producto:       producto.sku,
+        nombre_producto: producto.nombre,
+        sku_producto: producto.sku,
       });
     }
   }
@@ -143,12 +159,12 @@ const enviarCotizacion = async (quoteId, userId) => {
 
   await cotizacion.update({ estado: 'pendiente' });
   const cotizacionCompleta = await getCotizacionPorId(quoteId);
-  
-await emailService.enviarCotizacionRecibida({
-  email:      cotizacionCompleta.creador.email,
-  nombre:     cotizacionCompleta.creador.nombre,
-  cotizacion: cotizacionCompleta,
-});
+
+  await emailService.enviarCotizacionRecibida({
+    email: cotizacionCompleta.creador.email,
+    nombre: cotizacionCompleta.creador.nombre,
+    cotizacion: cotizacionCompleta,
+  });
 
   return getCotizacionPorId(quoteId);
 };
@@ -162,14 +178,21 @@ const aprobarCotizacion = async (quoteId, reviewerId, data = {}) => {
   }
 
   await cotizacion.update({
-    estado:          'aprobada',
-    reviewed_by:     reviewerId,
-    nota_vendedor:   data.nota_vendedor,
+    estado: 'aprobada',
+    reviewed_by: reviewerId,
+    nota_vendedor: data.nota_vendedor,
     descuento_extra: data.descuento_extra || cotizacion.descuento_extra,
   });
 
   // Recalculamos por si el vendedor cambió el descuento extra
   await recalcularTotales(quoteId);
+
+  const aprobada = await getCotizacionPorId(quoteId);
+  await n8n.notificarCotizacionAprobada(
+    aprobada,
+    aprobada.empresa,
+    aprobada.creador
+  );
 
   return getCotizacionPorId(quoteId);
 };
@@ -184,10 +207,17 @@ const rechazarCotizacion = async (quoteId, reviewerId, motivo) => {
   if (!motivo) throw errors.badRequest('Debe indicar el motivo del rechazo');
 
   await cotizacion.update({
-    estado:          'rechazada',
-    reviewed_by:     reviewerId,
-    motivo_rechazo:  motivo,
+    estado: 'rechazada',
+    reviewed_by: reviewerId,
+    motivo_rechazo: motivo,
   });
+
+  const rechazada = await getCotizacionPorId(quoteId);
+  await n8n.notificarCotizacionRechazada(
+    rechazada,
+    rechazada.empresa,
+    rechazada.creador
+  );
 
   return getCotizacionPorId(quoteId);
 };
@@ -201,7 +231,7 @@ const getCotizaciones = async (user, query) => {
   if (user.rol === 'cliente') where.company_id = user.company_id;
 
   // Filtros opcionales
-  if (query.estado)     where.estado     = query.estado;
+  if (query.estado) where.estado = query.estado;
   if (query.company_id && user.rol !== 'cliente') where.company_id = query.company_id;
 
   const { count, rows } = await Quote.findAndCountAll({
@@ -217,7 +247,7 @@ const getCotizaciones = async (user, query) => {
 
   return {
     cotizaciones: rows,
-    paginacion:   getPaginationMeta(count, page, limit),
+    paginacion: getPaginationMeta(count, page, limit),
   };
 };
 
@@ -231,8 +261,8 @@ const getCotizacionPorId = async (id) => {
         include: [{ model: Product, as: 'producto', attributes: ['id', 'sku', 'nombre', 'stock_actual'] }],
       },
       { model: Company, as: 'empresa' },
-      { model: require('../users/user.model'), as: 'creador',  attributes: ['id', 'nombre', 'apellido', 'email'] },
-      { model: require('../users/user.model'), as: 'revisor',  attributes: ['id', 'nombre', 'apellido'] },
+      { model: require('../users/user.model'), as: 'creador', attributes: ['id', 'nombre', 'apellido', 'email'] },
+      { model: require('../users/user.model'), as: 'revisor', attributes: ['id', 'nombre', 'apellido'] },
     ],
   });
   if (!cotizacion) throw errors.notFound('Cotización');
